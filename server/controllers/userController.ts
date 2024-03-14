@@ -1,4 +1,5 @@
-import {Request, Response} from 'express';
+import {NextFunction, Request, Response} from 'express';
+import ApiError from "../error/ApiError";
 
 class UserController {
   async registration(req: Request, res: Response) {
@@ -9,11 +10,12 @@ class UserController {
 
   }
 
-  async check(req: Request, res: Response) {
-    const query = req.query//получаем параметр строки запроса
-    res.json(query.id)
-      //допустим нужно только id
+  async check(req: Request, res: Response, next:NextFunction) {
     const {id} = req.query
+
+    if (!id){
+      return next(ApiError.badRequest('not back ID'))
+    }
     res.json(id)
   }
 }
