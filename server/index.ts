@@ -10,12 +10,15 @@ import cors from 'cors'
 import fileUpload from 'express-fileupload'
 import router from "./routes/index";
 import errorHandler from "./middleware/ErrorHandlingMiddleware";//импорт Обязтельно должен быть идти в конце
+import path from 'path';
 
 const PORT = process.env.PORT;
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+//указываем что файлы из папки static раздаем как статику
+app.use(express.static(path.resolve(__dirname, 'static')))
 app.use(fileUpload({}));//{}- Обьект с опциями
 
 //подключение роутеры
