@@ -5,11 +5,19 @@ import models from '../models/models';
 import ApiError from "../error/ApiError";
 import {v4} from "uuid";
 
+
+type InfoType={
+  title:string,
+  description:string,
+}
+type DeviceModel =  typeof models.Device &{
+  id: number;
+}
 class DeviceController {
   async create(req: Request, res: Response, next: NextFunction) {
 //получем данные из тела запроса
     try {
-      const {name, price, brandId, typeId, info} = req.body;
+      let {name, price, brandId, typeId, info} = req.body;
       let img;
       if (req.files) {
         img = req.files.img as fileUpload.UploadedFile;
@@ -22,6 +30,17 @@ class DeviceController {
 
       //create ustroistvo
       const device = await models.Device.create({name, price, brandId, typeId, img: fileName})
+
+      if (info) {
+        info = JSON.parse(info);
+        info.forEach((i:InfoType) =>
+          models.DeviceInfo.create({
+            title: i.title,
+            description: i.description,
+            deviceId: (device as any).id
+          })
+        )
+      }
 
       return res.json(device);
     } catch (e: any) {

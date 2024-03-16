@@ -46,7 +46,7 @@ const DeviceInfo = sequelize.define('device_info', {
 });
 
 //связующая таблица
-const TypeBrand = sequelize.define('type_brand',{
+const TypeBrand = sequelize.define('type_brand', {
   id: {type: DataType.INTEGER, primaryKey: true, autoIncrement: true},
 });
 
@@ -72,14 +72,11 @@ Rating.belongsTo(Device);
 Device.hasMany(BasketDevice);
 BasketDevice.belongsTo(Device);
 
-Device.hasMany(DeviceInfo);
+Device.hasMany(DeviceInfo, {as: 'info'});
 DeviceInfo.belongsTo(Device);
 
-Device.hasMany(BasketDevice);
-BasketDevice.belongsTo(Device);
-
-Type.belongsToMany(Brand, {through:TypeBrand});
-Brand.belongsToMany(Type, {through:TypeBrand});
+Type.belongsToMany(Brand, {through: TypeBrand});
+Brand.belongsToMany(Type, {through: TypeBrand});
 
 export default {
   User,
