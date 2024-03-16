@@ -7,6 +7,7 @@ import sequelize from './db'
 // import models from './models/models'
 const models = require('./models/models')
 import cors from 'cors'
+import fileUpload from 'express-fileupload'
 import router from "./routes/index";
 import errorHandler from "./middleware/ErrorHandlingMiddleware";//импорт Обязтельно должен быть идти в конце
 
@@ -14,7 +15,9 @@ const PORT = process.env.PORT;
 
 const app = express();
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
+app.use(fileUpload({}));//{}- Обьект с опциями
+
 //подключение роутеры
 app.use('/api', router);
 //Обработка ошибок, на нем работа прекращается
