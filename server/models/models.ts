@@ -1,5 +1,14 @@
 import sequelize from "../db";
 import DataType, {Model} from 'sequelize'
+import {JwtPayload} from "jsonwebtoken";
+
+declare global {
+  namespace Express {
+    interface Request {
+      user: string | JwtPayload;
+    }
+  }
+}
 
 export interface UserInstance extends Model {
   id: number;

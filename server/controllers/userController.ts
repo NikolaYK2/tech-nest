@@ -43,7 +43,7 @@ class UserController {
     }
     //проверка на совпадения пароля
     let comparePassword = bcrypt.compareSync(password, user.password); //сравниваем пароли
-    if (!comparePassword){
+    if (!comparePassword) {
       return next(ApiError.badRequest('password not верный!'));
     }
     //generate token
@@ -51,13 +51,13 @@ class UserController {
     return res.json({token});
   }
 
-  async check(req: Request, res: Response, next: NextFunction) {
-    const {id} = req.query
-
-    if (!id) {
-      return next(ApiError.badRequest('not back ID'))
+  async check(req: Request, res: Response) {
+    if (req.user && typeof req.user === 'object' && 'id' in req.user) {
+      const token = generateJWT(req.user.id, req.user.email, req.user.role);
+      return res.json({token})
+    } else if (typeof req.user === 'string') {
+      return res.status(401).json({message: 'not authorization!'})
     }
-    res.json(id)
   }
 }
 
