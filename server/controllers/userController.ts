@@ -3,13 +3,11 @@ import ApiError from "../error/ApiError";
 import models from '../models/models';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken'
+import checkSecretKey from "../utils/checkSecretKey";
 
 const generateJWT = (id: number, email: string, role: string) => {
-  if (!process.env.SECRET_KEY) {
-    throw new Error('SECRET_KEY is not defined');
-  }
-
-  return jwt.sign({id, email, role}, process.env.SECRET_KEY, {expiresIn: '24h'});
+  const secretKey = checkSecretKey();
+  return jwt.sign({id, email, role}, secretKey, {expiresIn: '24h'});
 }
 
 class UserController {

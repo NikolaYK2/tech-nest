@@ -1,7 +1,7 @@
 import sequelize from "../db";
 import DataType, {Model} from 'sequelize'
 
-interface UserInstance extends Model {
+export interface UserInstance extends Model {
   id: number;
   email: string;
   password: string;
