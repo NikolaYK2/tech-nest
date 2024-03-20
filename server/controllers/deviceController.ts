@@ -6,13 +6,14 @@ import ApiError from "../error/ApiError";
 import {v4} from "uuid";
 
 
-type InfoType={
-  title:string,
-  description:string,
+type InfoType = {
+  title: string,
+  description: string,
 }
-type DeviceModel =  typeof models.Device &{
+type DeviceModel = typeof models.Device & {
   id: number;
 }
+
 class DeviceController {
   async create(req: Request, res: Response, next: NextFunction) {
 //получем данные из тела запроса
@@ -33,7 +34,7 @@ class DeviceController {
 
       if (info) {
         info = JSON.parse(info);
-        info.forEach((i:InfoType) =>
+        info.forEach((i: InfoType) =>
           models.DeviceInfo.create({
             title: i.title,
             description: i.description,
@@ -76,7 +77,14 @@ class DeviceController {
   }
 
   async getOne(req: Request, res: Response) {
-
+    const {id} = req.params;
+    const device = await models.Device.findOne(
+      {
+        where: {id},
+        include: [{model: models.DeviceInfo, as: 'info'}]
+      }//передаем условия где искать девайс
+    );
+    return res.json(device);
   }
 
 }
