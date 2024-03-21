@@ -14,38 +14,29 @@ import {
 import {Basket} from "@/features/auth/ui/basket/Basket.tsx";
 import {Auth} from "@/features/auth/ui/Auth.tsx";
 import {DevicePage} from "@/features/shop/ui/device/DevicePage.tsx";
+import AuthProvider from "@/features/auth/model/AuthProvider.tsx";
 
 const router = createBrowserRouter([
   {
     path: SHOP_ROUTE,
     element: <App/>,
     children: [
-      {
-        path: ADMIN_ROUTE,
-        element: <Admin/>
-      },
-      {
-        path: BASKET_ROUTE,
-        element: <Basket/>
-      },
-
-      {
-        path: LOGIN_ROUTE,
-        element: <Auth/>
-      },
-      {
-        path: REGISTRATION_ROUTE,
-        element: <Auth/>
-      },
-      {
-        path: DEVICE_ROUTE + '/:id',
-        element: <DevicePage/>
-      },
-
+      {path: ADMIN_ROUTE, element: <Admin/>},
+      {path: BASKET_ROUTE, element: <Basket/>},
+      {path: LOGIN_ROUTE, element: <Auth/>},
+      {path: REGISTRATION_ROUTE, element: <Auth/>},
+      {path: DEVICE_ROUTE, element: <DevicePage/>},
+      {path: DEVICE_ROUTE + '/:id', element: <DevicePage/>},
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={router}/>
+  <AuthProvider>
+    <RouterProvider router={router}/>
+  </AuthProvider>
 )
+
+
+
+
