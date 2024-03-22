@@ -16,6 +16,7 @@ import {Auth} from "@/features/auth/ui/Auth.tsx";
 import {DevicePage} from "@/features/shop/ui/device/ui/DevicePage.tsx";
 import {AuthProvider} from "@/features/auth/model/AuthProvider.tsx";
 import {DeviceProvider} from "@/features/shop/ui/device/model/DeviceProvider.tsx";
+import '@/assets/styles/index.scss'
 
 const router = createBrowserRouter([
   {
