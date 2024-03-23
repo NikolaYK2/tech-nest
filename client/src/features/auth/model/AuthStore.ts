@@ -5,7 +5,7 @@ export class AuthStore {
   private user;
 
   constructor() {
-    this.isAuth = false
+    this.isAuth = true
     this.user = {}
     makeAutoObservable(this)
   }

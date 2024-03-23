@@ -1,17 +1,3 @@
-:root {
-  //FS ---
-  --font-p: 1rem;
-  --font-medium: 1.14285rem;
-  --font-h2: 1.28571rem;
-  --font-h1: 1.78571rem;
-
-  //FW ---
-  --f-w-m: 500;
-  --f-w-b: 900;
-}
-
-
-
 @font-face {
   font-family: 'Open-Sans';
   src: local('@/assets/fonts/medium/OpenSans-Medium.eot');
@@ -37,3 +23,19 @@
   font-style: normal;
   font-display: swap;
 }
+
+:root {
+  //FS ---
+  --font-s-p: 1rem;
+  --font-s-medium: 1.14285rem;
+  --font-s-h2: 1.28571rem;
+  --font-s-h1: 1.78571rem;
+
+  //FW ---
+  --f-w-m: 500;
+  --f-w-b: 900;
+
+  //FF ---
+  --f-open-sans: 'Open-Sans'
+}
+
