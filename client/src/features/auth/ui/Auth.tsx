@@ -19,7 +19,9 @@ export const Auth = () => {
 
   return (
     <div className={`containerApp ${s.containerAuth}`}>
-      Login
+      <div className={s.nameForm}>
+        <h2 >Login</h2>
+      </div>
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         {loginData.map(input =>
           <label className={s.input} key={input.name}>
@@ -30,6 +32,7 @@ export const Auth = () => {
           </label>)}
         <PolyElement variant={"primary"}>Login</PolyElement>
       </form>
+      {/*<button className={s.btn}>or</button>*/}
     </div>
   );
 };
