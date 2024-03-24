@@ -2,7 +2,6 @@ import {useAuth} from "@/features/auth/lib/useAuth.ts";
 import s from './NavBar.module.scss'
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {observer} from "mobx-react-lite";
-import {Logo} from "@/common/components/logo/Logo.tsx";
 
 //observer - mobx Отслеживает состояние
 export const NavBar = observer(() => {
@@ -12,10 +11,10 @@ export const NavBar = observer(() => {
   const adminUser = ['Admin panel', 'Sign in']
 
   return (
-    <nav>
-      <Logo/>
+    <nav className={s.nav}>
       <ul className={s.ul}>
-        {user.getIsAuth
+        {
+          user.getIsAuth
           ?
           adminUser.map(el => <li className={s.li}><PolyElement variant={"secondary"}>{el}</PolyElement></li>)
           :

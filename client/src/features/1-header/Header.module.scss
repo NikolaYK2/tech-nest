@@ -1,8 +1,13 @@
-.header{
+.header {
+  display: flex;
+  align-items: center;
   height: 96px;
+  border: 1px solid red;
 
-  .containerHeader{
+  .containerHeader {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     //width: 100%;
 
   }
