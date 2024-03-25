@@ -1,5 +1,5 @@
 import {createContext, ReactNode} from "react";
-import {DeviceStore} from "@/features/shop/ui/device/model/DeviceStore.ts";
+import {DeviceStore} from "@/features/shop/model/DeviceStore.ts";
 
 const deviceStoreInstance = new DeviceStore();
 

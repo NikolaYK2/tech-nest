@@ -12,10 +12,10 @@ import {
 } from "@/common/utils/constRout.ts";
 import {Basket} from "@/features/auth/ui/basket/Basket.tsx";
 import {Auth} from "@/features/auth/ui/Auth.tsx";
-import {DevicePage} from "@/features/shop/ui/device/ui/DevicePage.tsx";
 import {AuthProvider} from "@/features/auth/model/AuthProvider.tsx";
-import {DeviceProvider} from "@/features/shop/ui/device/model/DeviceProvider.tsx";
 import '@/assets/styles/index.scss'
+import {DevicePage} from "@/features/shop/ui/DevicePage.tsx";
+import {DeviceProvider} from "@/features/shop/model/DeviceProvider.tsx";
 
 const router = createBrowserRouter([
   {

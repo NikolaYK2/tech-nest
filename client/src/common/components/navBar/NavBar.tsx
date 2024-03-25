@@ -16,7 +16,7 @@ export const NavBar = observer(() => {
         {
           user.getIsAuth
           ?
-          adminUser.map(el => <li className={s.li}><PolyElement variant={"secondary"}>{el}</PolyElement></li>)
+          adminUser.map(el => <li key={el} className={s.li}><PolyElement variant={"secondary"}>{el}</PolyElement></li>)
           :
           <li className={s.li}><PolyElement variant={"secondary"}>Authorisation</PolyElement></li>
         }
