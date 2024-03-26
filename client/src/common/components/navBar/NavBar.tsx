@@ -15,9 +15,11 @@ export const NavBar = observer(({navigation, className, fullWidth, variant, sele
       <ul className={`${s.ul} ${className}`}>
         {navigation.map(el =>
           <li key={el.name}
-              className={`${s.li} ${selected && selected.id === el.id && s.active}`}
+              className={`${s.li} ${selected && selected.id === el.id && s.activeLi}`}
               onClick={() => device.setSelectedType(el)}>
-            <PolyElement variant={variant} fullWidth={fullWidth}>{el.name}</PolyElement>
+            <PolyElement variant={variant}
+                         className={`${selected && selected.id === el.id && s.asctivBtn}`}
+                         fullWidth={fullWidth}>{el.name}</PolyElement>
           </li>)}
       </ul>
     </nav>

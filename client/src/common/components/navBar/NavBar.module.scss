@@ -8,10 +8,14 @@
     margin: 0 10px 0 0;
     transition: all 1s ease 0s;
   }
-  .active{
+  .activeLi{
     //background: var(--color-light-100);
-    width: 120px;
+    width: 90px;
     transition: all 1s ease 0s;
+  }
+  .asctivBtn{
+    background: var(--color-dark-900);
+    color: var(--color-light-100);
   }
 
 }

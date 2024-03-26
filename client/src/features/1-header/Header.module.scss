@@ -82,7 +82,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 40px;
+    width: 30px;
     background: var(--color-light-100);
 
     //background: var(--color-light-100);
@@ -91,6 +91,8 @@
     z-index: 1;
 
     .nav {
+      flex: 1 1 100%;
+      width: 150px;
       flex-direction: column;
       justify-content: space-between;
     }
