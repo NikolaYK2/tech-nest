@@ -3,11 +3,9 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import App from "@/app/App.tsx";
 import {Admin} from "@/features/auth/ui/admin/Admin.tsx";
 import {
-  ADMIN_ROUTE,
+  ADMIN_ROUTE, AUTHORIZATION_ROUTE,
   BASKET_ROUTE,
   DEVICE_ROUTE,
-  LOGIN_ROUTE,
-  REGISTRATION_ROUTE,
   SHOP_ROUTE
 } from "@/common/utils/constRout.ts";
 import {Basket} from "@/features/auth/ui/basket/Basket.tsx";
@@ -24,8 +22,8 @@ const router = createBrowserRouter([
     children: [
       {path: ADMIN_ROUTE, element: <Admin/>},
       {path: BASKET_ROUTE, element: <Basket/>},
-      {path: LOGIN_ROUTE, element: <Auth/>},
-      {path: REGISTRATION_ROUTE, element: <Auth/>},
+      {path: AUTHORIZATION_ROUTE, element: <Auth/>},
+      {path: AUTHORIZATION_ROUTE, element: <Auth/>},
       {path: DEVICE_ROUTE, element: <DevicePage/>},
       {path: DEVICE_ROUTE + '/:id', element: <DevicePage/>},
     ]

@@ -3,6 +3,7 @@ import s from './Auth.module.scss'
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {useAuth} from "@/features/auth/lib/useAuth.ts";
 import {observer} from "mobx-react-lite";
+import {useState} from "react";
 
 type AuthType = {
   name: string,
@@ -11,6 +12,7 @@ type AuthType = {
   validate?: (value: string) => true | "Passwords do not match";
 }
 export const Auth = observer(() => {
+  const [switchForm, setSwitchForm] = useState(false)
 
   const {user} = useAuth()
   const {handleSubmit, register, watch, formState: {errors}} = useForm();
@@ -39,22 +41,22 @@ export const Auth = observer(() => {
     <div className={`containerApp ${s.containerAuth}`}>
       <div className={s.blockForm}>
         <div className={`${s.nameForm}`}>
-          <h2 className={`${s.h2} ${user.getIsAuth && s.reversName}`}>{user.getIsAuth ? 'Register' : 'Login'}</h2>
+          <h2 className={`${s.h2} ${switchForm && s.reversName}`}>{switchForm ? 'Register' : 'Login'}</h2>
         </div>
-        <form className={`${s.form} ${user.getIsAuth && s.reversForm}`} onSubmit={handleSubmit(onSubmit)}>
+        <form className={`${s.form} ${switchForm && s.reversForm}`} onSubmit={handleSubmit(onSubmit)}>
 
-          {(user.getIsAuth ? registerData : loginData).map(inp =>
+          {(switchForm ? registerData : loginData).map(inp =>
             <label key={inp.name} className={`${s.input} ${inp.type === 'checkbox' ? s.flex : ''}`}>
               <p>{inp.name}</p>{errors[inp.name] && <span>{(errors[inp.name]?.message) as string}</span>}
               <input type={inp.type} autoComplete={'on'} {...register(inp.name,
-                {required: inp.type === 'checkbox' ? false : 'Fill in the box' , validate: inp.validate})}
+                {required: inp.type === 'checkbox' ? false : 'Fill in the box', validate: inp.validate})}
               />
             </label>)}
 
-          <PolyElement variant={"primary"}>{user.getIsAuth ? 'Register' : 'Log in'}</PolyElement>
+          <PolyElement variant={"primary"}>{switchForm ? 'Register' : 'Log in'}</PolyElement>
         </form>
       </div>
-      <button className={`${s.btn} ${user.getIsAuth && s.reversBtn}`} onClick={() => user.setIsAuth(!user.getIsAuth)}>
+      <button className={`${s.btn} ${switchForm && s.reversBtn}`} onClick={() => setSwitchForm(!switchForm)}>
         <p>or</p>
       </button>
     </div>
