@@ -14,7 +14,7 @@ type AuthType = {
 export const Auth = observer(() => {
   const [switchForm, setSwitchForm] = useState(false)
 
-  const {user} = useAuth()
+  const {} = useAuth()
   const {handleSubmit, register, watch, formState: {errors}} = useForm();
 
   const loginData: AuthType[] = [

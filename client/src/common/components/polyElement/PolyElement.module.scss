@@ -4,6 +4,7 @@
 
 .primary {
   all: unset;
+  max-width: 100%;
   display: inline-flex;
   align-self: start;
   padding: 9px 32px;
@@ -24,18 +25,22 @@
 
 .secondary {
   all: unset;
+  max-width: 100%;
   display: flex;
   border-radius: 10px;
   white-space: nowrap;
   padding: 10px 20px;
   border: 1px solid transparent;
-  transition: border .3s ease 0s;
+  background: var(--color-dark-900);
+  box-shadow: 1px 1px 5px var(--color-dark-900);
+  transition: box-shadow .3s ease 0s, color .3s ease 0s;
+
   cursor: pointer;
 
   &:hover {
-    border: 1px solid var(--color-medium-900);
-    background: black;
-    transition: border .3s ease 0.1s;
+    color: var(--color-medium-900);
+    box-shadow: 1px 1px 5px var(--color-medium-900);
+    transition: box-shadow .3s ease 0s, color .3s ease 0s;
   }
 }
 
@@ -43,6 +48,6 @@
 
 }
 
-.fullWidth{
+.fullWidth {
   width: 100%;
 }

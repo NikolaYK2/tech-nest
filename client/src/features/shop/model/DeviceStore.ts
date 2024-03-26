@@ -8,7 +8,9 @@ export class DeviceStore {
   constructor() {
     this.types = [
       {id:1, name: 'Холодильники'},
-      {id:2, name: 'Smarts'}
+      {id:2, name: 'Smarts'},
+      {id:3, name: 'Laptop'},
+      {id:4, name: 'TV'}
     ]
     this.brands = [
       {id:1, name: 'Samsung'},
