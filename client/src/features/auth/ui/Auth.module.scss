@@ -53,16 +53,15 @@
     .form {
       flex: 1 1 auto;
       max-width: 40%;
-      height: 190px;
       display: flex;
       flex-direction: column;
-      transition: height 1s ease 0s;
 
       .input {
         width: 100%;
         margin: 0 0 16px;
 
         > p {
+          display: inline-block;
           margin: 0 0 12px;
         }
 
@@ -72,13 +71,34 @@
           border-radius: 14px;
           background: var(--color-dark-100);
           color: var(--color-light-100);
+          &:-webkit-autofill{
+            transition: all 5000s ease-in-out 0s;
+          }
+        }
+      }
+
+      .flex {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: start;
+        //width: 30px;
+        white-space: nowrap;
+        >p{
+          font-size: var(--font-s-p);
+          margin: 0;
+        }
+        > input {
+          display: flex;
+          width: 13px;
+          height: 13px;
+          margin: 0 10px 0 0;
         }
       }
     }
 
     .reversForm {
       margin: 0 0 0 auto;
-      height: 270px;
     }
   }
 
@@ -117,21 +137,21 @@
 }
 
 
-
 @media (max-width: 500px) {
   .containerAuth .btn {
     position: relative;
     left: 100%;
     transform: translateX(-100%);
     top: -42px;
-    >p{
+
+    > p {
       all: unset;
     }
   }
-  .containerAuth:before{
+  .containerAuth:before {
     display: none;
   }
-  .containerAuth .blockForm .form{
+  .containerAuth .blockForm .form {
     height: 100%;
     max-width: none;
   }

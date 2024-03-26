@@ -1,26 +1,38 @@
-import {SubmitHandler, useForm} from "react-hook-form";
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import s from './Auth.module.scss'
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {useAuth} from "@/features/auth/lib/useAuth.ts";
 import {observer} from "mobx-react-lite";
 
+type AuthType = {
+  name: string,
+  type: string,
+  required?: boolean,
+  validate?: (value: string) => true | "Passwords do not match";
+}
 export const Auth = observer(() => {
 
   const {user} = useAuth()
+  const {handleSubmit, register, watch, formState: {errors}} = useForm();
 
-  const loginData = [
+  const loginData: AuthType[] = [
     {name: 'Username or email address *', type: 'text'},
-    {name: 'Password *', type: 'password'}
+    {name: 'Password *', type: 'password'},
+    {name: 'Remember me', type: 'checkbox', required: false},
   ]
-  const regostrationData = [
+  const registerData: AuthType[] = [
     {name: 'Username *', type: 'text'},
     {name: 'Email address *', type: 'email'},
-    {name: 'Password *', type: 'password'}
+    {name: 'Password *', type: 'password'},
+    {
+      name: 'Repeat Password *',
+      type: 'password',
+      validate: (value: string) => value === watch('Password *') || "Passwords do not match"
+    }
   ]
 
-
-  const {handleSubmit, register} = useForm();
-  const onSubmit: SubmitHandler<any> = dara => {
+  const onSubmit: SubmitHandler<FieldValues> = data => {
+    console.log(data)
   }
 
   return (
@@ -31,11 +43,11 @@ export const Auth = observer(() => {
         </div>
         <form className={`${s.form} ${user.getIsAuth && s.reversForm}`} onSubmit={handleSubmit(onSubmit)}>
 
-          {(user.getIsAuth ? regostrationData : loginData).map(input =>
-            <label key={input.name} className={s.input}>
-              <p>{input.name}</p>
-              <input {...register(input.type,
-                {required: 'Fill in the box'})}
+          {(user.getIsAuth ? registerData : loginData).map(inp =>
+            <label key={inp.name} className={`${s.input} ${inp.type === 'checkbox' ? s.flex : ''}`}>
+              <p>{inp.name}</p>{errors[inp.name] && <span>{(errors[inp.name]?.message) as string}</span>}
+              <input type={inp.type} autoComplete={'on'} {...register(inp.name,
+                {required: inp.type === 'checkbox' ? false : 'Fill in the box' , validate: inp.validate})}
               />
             </label>)}
 
