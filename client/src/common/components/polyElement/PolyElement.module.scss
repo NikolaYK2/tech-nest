@@ -1,5 +1,10 @@
 .link {
-
+  all: unset;
+  display: flex;
+  align-items: center;
+  color: var(--color-dark-100);
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 .primary {

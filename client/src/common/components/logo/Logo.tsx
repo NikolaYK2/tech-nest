@@ -5,7 +5,7 @@ import s from './Logo.module.scss'
 export const Logo = () => {
   return (
     <div className={s.s}>
-      <PolyElement className={s.logo} as={NavLink} to={SHOP_ROUTE}>
+      <PolyElement className={s.logo} as={NavLink} variant={"link"} to={SHOP_ROUTE}>
         <p>Techno<span className={s.span}>Nest</span></p>
       </PolyElement>
     </div>

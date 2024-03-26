@@ -6,8 +6,7 @@ import {useDevice} from "@/features/shop/lib/useDevice.ts";
 import {observer} from "mobx-react-lite";
 import {toJS} from "mobx";
 import {useState} from "react";
-
-// const shopCategories = []
+import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 
 export const Header = observer(() => {
   const [navIsActive, setNavIsActive] = useState(false);
@@ -25,11 +24,15 @@ export const Header = observer(() => {
 
         <NavBar variant={"secondary"} fullWidth={false} navigation={user.getIsAuth ? adminUser : publicUser}/>
       </section>
-      <section className={s.blockFind}>
-        <button>Shop By Department</button>
+      <section className={`${s.blockFind} containerApp`}>
+        <PolyElement variant={"link"} onClick={() => setNavIsActive(!navIsActive)}>
+          Shop By Department <span className={`${s.span} ${navIsActive && s.isActive}`}></span>
+        </PolyElement>
       </section>
-      <section className={s.blockNav}>
-        <NavBar className={s.nav} fullWidth={true} navigation={toJS(device.getTypes)}/>
+      <section className={`containerApp`}>
+        <div className={`${s.blockNav} ${navIsActive && s.activeNav}`}>
+          <NavBar className={s.nav} fullWidth={true} navigation={toJS(device.getTypes)}/>
+        </div>
       </section>
     </header>
   );
