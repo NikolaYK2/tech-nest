@@ -4,7 +4,6 @@ import {Logo} from "@/common/components/logo/Logo.tsx";
 import {useAuth} from "@/features/auth/lib/useAuth.ts";
 import {useDevice} from "@/features/shop/lib/useDevice.ts";
 import {observer} from "mobx-react-lite";
-import {toJS} from "mobx";
 import {useState} from "react";
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 
@@ -21,17 +20,22 @@ export const Header = observer(() => {
     <header className={`${s.header}`}>
       <section className={`${s.blockAuth} containerApp`}>
         <Logo/>
-
-        <NavBar variant={"secondary"} fullWidth={false} navigation={user.getIsAuth ? adminUser : publicUser}/>
+        <NavBar variant={"secondary"} navigation={user.getIsAuth ? adminUser : publicUser}/>
       </section>
+
       <section className={`${s.blockFind} containerApp`}>
         <PolyElement variant={"link"} onClick={() => setNavIsActive(!navIsActive)}>
           Shop By Department <span className={`${s.span} ${navIsActive && s.isActive}`}></span>
         </PolyElement>
       </section>
+
       <section className={`containerApp`}>
         <div className={`${s.blockNav} ${navIsActive && s.activeNav}`}>
-          <NavBar className={s.nav} fullWidth={true} navigation={toJS(device.getTypes)}/>
+          <NavBar className={s.nav}
+                  fullWidth={true}
+                  navigation={device.getTypes}
+                  selected={device.getSelectedType}
+          />
         </div>
       </section>
     </header>

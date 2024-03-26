@@ -12,6 +12,7 @@
     height: 80px;
     background: var(--color-dark-100);
     z-index: 2;
+
   }
 
   .blockFind {
@@ -19,6 +20,7 @@
     align-items: center;
     height: 45px;
     width: 100%;
+    padding: 0 min(3.3%, 24px);
     background: var(--color-medium-900);
     z-index: 2;
 
@@ -76,13 +78,17 @@
   }
 
   .blockNav {
+    position: absolute;
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 240px;
+    width: 40px;
     background: var(--color-light-100);
+
+    //background: var(--color-light-100);
     transform: translateY(-100%);
     transition: transform 1s ease 0s;
+    z-index: 1;
 
     .nav {
       flex-direction: column;
