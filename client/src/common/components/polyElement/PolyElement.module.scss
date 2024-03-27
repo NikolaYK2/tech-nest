@@ -1,10 +1,24 @@
 .link {
   all: unset;
+  position: relative;
   display: flex;
   align-items: center;
   color: var(--color-dark-100);
   text-transform: capitalize;
+  line-height: 2;
+  overflow: hidden;
+  border: 2px solid transparent;
   cursor: pointer;
+  &:after{
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    width: 1px;
+    height: 1px;
+    transform: translate(0);
+  }
+
 }
 
 .primary {
@@ -51,7 +65,6 @@
 }
 
 .tertiary {
-
 }
 
 .fullWidth {

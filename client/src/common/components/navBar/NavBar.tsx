@@ -24,7 +24,8 @@ export const NavBar = observer(({navigation, className, fullWidth, variant, sele
     setSelected && setSelected(el)
   }
 
-  const isActiveBtn = variant ? s.black : ''
+  const isActiveBtn = variant === 'primary' ? s.primaryIsActive :
+    variant === 'link' ? s.tertiaryIsActive : ''
 
   return (
     <nav className={s.nav}>

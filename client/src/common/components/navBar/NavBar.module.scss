@@ -1,5 +1,6 @@
-.nav{
+.nav {
 }
+
 .ul {
   display: flex;
 
@@ -8,14 +9,35 @@
     margin: 0 10px 0 0;
     transition: all 1s ease 0s;
   }
-  .primary{
+
+  .primary {
     //background: var(--color-light-100);
     width: 90px;
     transition: all 1s ease 0s;
   }
-  .black{
+
+  .primaryIsActive {
     background: var(--color-dark-900);
     color: var(--color-light-100);
   }
 
+  .tertiaryIsActive {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid var(--color-medium-900);
+    transition: border-bottom .1s ease 0s;
+
+    &:after{
+      content: '';
+      display: block;
+      width: 7px;
+      height: 7px;
+      background: var(--color-medium-900);
+      transform: rotate(45deg) translate(1px,3px);
+      transform-origin: bottom;
+      //border-radius: 0 0 3px 3px;
+      transition: all .3s ease .3s;
+    }
+
+  }
 }

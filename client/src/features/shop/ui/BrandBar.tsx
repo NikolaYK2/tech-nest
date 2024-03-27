@@ -11,11 +11,15 @@ export const BrandBar = observer(() => {
       <div className={`${s.a} containerApp`}>
         <div className={s.blockNav}>
           <NavBar className={s.nav}
-                  variant={"tertiary"}
+                  variant={"link"}
                   fullWidth={false}
                   navigation={device.getBrands}
                   selected={device.getSelectedBrand}
-                  setSelected={device.setSelectedBrand}/>
+                  setSelected={device.setSelectedBrand}
+          />
+          <div className={s.item}>
+
+          </div>
         </div>
       </div>
     </div>
