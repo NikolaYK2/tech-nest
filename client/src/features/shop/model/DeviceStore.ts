@@ -46,11 +46,11 @@ export class DeviceStore {
     this.device = device
   }
 
-  setSelectedType = (type: any) => {
+  setSelectedType = (type: SelectedType) => {
     this.selectedType = type
   }
 
-  setSelectedBrand(type: any) {
+  setSelectedBrand = (type: SelectedType) => {
     this.selectedBrand = type
   }
 

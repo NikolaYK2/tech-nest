@@ -1,0 +1,28 @@
+.a {
+  display: flex;
+
+  .blockNav {
+    &:before {
+      content: '';
+      display: block;
+      flex: 0 0 33%;
+      min-width: 216px;
+      height: 100%;
+    }
+
+    flex: 0 1 66%;
+    display: flex;
+    justify-content: center;
+
+    .nav {
+      display: flex;
+      justify-content: center;
+
+      //> li {
+      //  all: unset;
+      //  margin: 0 20px 0 0;
+      //}
+    }
+  }
+}
+

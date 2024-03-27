@@ -34,6 +34,7 @@ export const Header = observer(() => {
       <section className={`containerApp`}>
         <div className={`${s.blockNav} ${navIsActive && s.activeNav}`}>
           <NavBar className={s.nav}
+                  variant={"primary"}
                   fullWidth={true}
                   navigation={device.getTypes}
                   selected={device.getSelectedType}
