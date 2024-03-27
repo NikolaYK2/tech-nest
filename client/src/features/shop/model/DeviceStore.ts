@@ -1,13 +1,15 @@
 import {makeAutoObservable} from "mobx";
 
-export type SelectedType={
-  id?:number
+export type SelectedType = {
+  id?: number
 }
+
 export class DeviceStore {
   private types;
   private brands;
   private device;
   private selectedType;
+  private selectedBrand;
 
   constructor() {
     this.types = [
@@ -27,6 +29,7 @@ export class DeviceStore {
       {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
     ]
     this.selectedType = {} as SelectedType
+    this.selectedBrand = {} as SelectedType
 
     makeAutoObservable(this)
   }
@@ -43,8 +46,12 @@ export class DeviceStore {
     this.device = device
   }
 
-  setSelectedType(type: any) {
+  setSelectedType = (type: any) => {
     this.selectedType = type
+  }
+
+  setSelectedBrand(type: any) {
+    this.selectedBrand = type
   }
 
   get getTypes() {
@@ -61,5 +68,9 @@ export class DeviceStore {
 
   get getSelectedType() {
     return this.selectedType
+  }
+
+  get getSelectedBrand() {
+    return this.selectedBrand
   }
 }

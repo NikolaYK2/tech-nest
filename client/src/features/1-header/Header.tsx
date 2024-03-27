@@ -23,10 +23,12 @@ export const Header = observer(() => {
         <NavBar variant={"secondary"} navigation={user.getIsAuth ? adminUser : publicUser}/>
       </section>
 
-      <section className={`${s.blockFind} containerApp`}>
-        <PolyElement variant={"link"} onClick={() => setNavIsActive(!navIsActive)}>
-          Shop By Department <span className={`${s.span} ${navIsActive && s.isActive}`}></span>
-        </PolyElement>
+      <section className={`${s.blockFind}`}>
+        <div className={'containerApp'}>
+          <PolyElement variant={"link"} onClick={() => setNavIsActive(!navIsActive)}>
+            Shop By Department <span className={`${s.span} ${navIsActive && s.isActive}`}></span>
+          </PolyElement>
+        </div>
       </section>
 
       <section className={`containerApp`}>
@@ -35,6 +37,7 @@ export const Header = observer(() => {
                   fullWidth={true}
                   navigation={device.getTypes}
                   selected={device.getSelectedType}
+                  setSelected={device.setSelectedType}
           />
         </div>
       </section>

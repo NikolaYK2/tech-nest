@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     width: 100%;
     height: 80px;
-    background: var(--color-dark-100);
+    background: var(--color-dark-500);
     z-index: 2;
 
   }
@@ -20,9 +20,12 @@
     align-items: center;
     height: 45px;
     width: 100%;
-    padding: 0 min(3.3%, 24px);
     background: var(--color-medium-900);
     z-index: 2;
+
+    > div > button {
+      padding: 0 min(3.3%, 24px);
+    }
 
     .span {
       position: relative;
@@ -82,7 +85,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    width: 30px;
+    width: 100px;
     background: var(--color-light-100);
 
     //background: var(--color-light-100);
