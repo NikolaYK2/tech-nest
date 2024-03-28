@@ -6,7 +6,7 @@ import {DeviceItem} from "@/features/shop/ui/DeviceItem.tsx";
 export const DeviceList = observer(() => {
   const {device} = useDevice();
   return (
-    <div>
+    <div className={s.containerDeviceList}>
       {device.getDevice.map(device =>
         <DeviceItem key={device.id} device={device}/>
       )}

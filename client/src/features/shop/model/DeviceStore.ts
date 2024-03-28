@@ -33,10 +33,34 @@ export class DeviceStore {
       {id: 4, name: 'Asus'},
     ]
     this.device = [
-      {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-      {id: 2, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-      {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
-      {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
+      {
+        id: 1,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
+      },
+      {
+        id: 2,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
+      },
+      {
+        id: 3,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
+      },
+      {
+        id: 4,
+        name: 'Iphone 12 pro',
+        price: 25000,
+        rating: 5,
+        img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
+      },
     ]
     this.selectedType = {}
     this.selectedBrand = {}
