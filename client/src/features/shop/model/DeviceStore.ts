@@ -1,15 +1,23 @@
 import {makeAutoObservable} from "mobx";
 
-export type SelectedType = {
-  id?: number
+
+export type Type = {
+  id: number,
+  name: string,
 }
+export type DeviceType = Type & {
+  price: number,
+  rating: number,
+  img: string,
+}
+export type SelectedType = Partial<Omit<Type, 'name'>>
 
 export class DeviceStore {
-  private types;
+  private types: Type[];
   private brands;
-  private device;
-  private selectedType;
-  private selectedBrand;
+  private device: DeviceType[];
+  private selectedType: SelectedType;
+  private selectedBrand: SelectedType;
 
   constructor() {
     this.types = [
@@ -30,8 +38,8 @@ export class DeviceStore {
       {id: 3, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
       {id: 4, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
     ]
-    this.selectedType = {} as SelectedType
-    this.selectedBrand = {} as SelectedType
+    this.selectedType = {}
+    this.selectedBrand = {}
 
     makeAutoObservable(this)
   }
