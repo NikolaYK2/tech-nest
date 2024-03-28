@@ -18,7 +18,6 @@ export const BrandBar = observer(() => {
                   setSelected={device.setSelectedBrand}
           />
           <div className={s.item}>
-
           </div>
         </div>
       </div>

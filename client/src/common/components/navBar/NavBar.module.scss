@@ -24,7 +24,7 @@
   .tertiaryIsActive {
     display: flex;
     flex-direction: column;
-    border-bottom: 2px solid var(--color-medium-900);
+    border-bottom: 1px solid var(--color-medium-900);
     transition: border-bottom .1s ease 0s;
 
     &:after{

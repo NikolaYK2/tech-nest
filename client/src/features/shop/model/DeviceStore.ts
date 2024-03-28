@@ -20,7 +20,9 @@ export class DeviceStore {
     ]
     this.brands = [
       {id: 1, name: 'Samsung'},
-      {id: 2, name: 'Apple'}
+      {id: 2, name: 'Apple'},
+      {id: 3, name: 'Lenovo'},
+      {id: 4, name: 'Asus'},
     ]
     this.device = [
       {id: 1, name: 'Iphone 12 pro', price: 25000, rating: 5, img: ''},
