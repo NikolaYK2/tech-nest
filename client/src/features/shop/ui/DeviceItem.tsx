@@ -1,5 +1,7 @@
 import {DeviceType} from "@/features/shop/model/DeviceStore.ts";
 import s from './DeviceItem.module.scss'
+import {IconSVG} from "@/common/components/IconSvg/IconSVG.tsx";
+import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 type Props = {
   device: DeviceType
 }
@@ -12,7 +14,7 @@ export const DeviceItem = ({device}: Props) => {
       </div>
       <div className={s.price}>
         <p>{device.price}</p>
-        <button>add</button>
+        <PolyElement variant={"link"} className={s.btn}><IconSVG name={"basket"}/></PolyElement>
       </div>
     </section>
   );

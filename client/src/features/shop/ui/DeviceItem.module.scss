@@ -43,5 +43,12 @@
     font-size: var(--font-s-medium);
     margin: 8% 0 0;
 
+    .btn {
+      width: 33px;
+      height: 33px;
+      > svg g path {
+        fill: red;
+      }
+    }
   }
 }
