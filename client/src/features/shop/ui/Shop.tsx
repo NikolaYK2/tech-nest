@@ -3,7 +3,7 @@ import {DeviceList} from "@/features/shop/ui/DeviceList.tsx";
 
 export const Shop = () => {
   return (
-    <div>
+    <div className={'containerApp'}>
       SHOP
       <BrandBar/>
       <DeviceList/>
