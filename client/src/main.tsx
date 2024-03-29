@@ -14,6 +14,7 @@ import {AuthProvider} from "@/features/auth/model/AuthProvider.tsx";
 import '@/assets/styles/index.scss'
 import {DevicePage} from "@/features/shop/ui/DevicePage.tsx";
 import {DeviceProvider} from "@/features/shop/model/DeviceProvider.tsx";
+import {DeviceList} from "@/features/shop/ui/DeviceList.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
       {path: BASKET_ROUTE, element: <Basket/>},
       {path: AUTHORIZATION_ROUTE, element: <Auth/>},
       {path: AUTHORIZATION_ROUTE, element: <Auth/>},
-      {path: DEVICE_ROUTE, element: <DevicePage/>},
+      {path: DEVICE_ROUTE, element: <DeviceList/>},
       {path: DEVICE_ROUTE + '/:id', element: <DevicePage/>},
     ]
   }
