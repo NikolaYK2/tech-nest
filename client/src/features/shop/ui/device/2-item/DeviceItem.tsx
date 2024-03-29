@@ -19,7 +19,9 @@ export const DeviceItem = ({device}: Props) => {
         </div>
         <div className={s.price}>
           <p>{device.price}</p>
-          <PolyElement variant={"link"} className={s.btn}><IconSVG name={"basket"}/></PolyElement>
+          <div className={s.basked}>
+            <PolyElement variant={"link"} onClick={(e)=>e.stopPropagation()} className={'basketApp'}><IconSVG name={"basket"}/></PolyElement>
+          </div>
         </div>
       </div>
     </section>

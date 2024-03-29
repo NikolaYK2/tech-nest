@@ -1,7 +1,42 @@
-:root{
-  .containerApp{
+:root {
+  .containerApp {
     max-width: 1430px;
     width: 100%;
     margin: 0 auto;
+  }
+  .paddingApp{
+    padding: 5% 0;
+  }
+  .basketApp {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    padding: 5px;
+    background: var(--color-light-500);
+    box-sizing: border-box;
+    transition: background .3s ease 0s;
+
+    > svg {
+      margin: 0 2px 0 0;
+
+      g path {
+
+        fill: var(--color-light-100);
+      }
+    }
+
+    &:hover {
+      background: var(--color-medium-900);
+      transition: background .3s ease 0s;
+
+    }
+
+    &:hover > svg g path {
+      fill: var(--color-dark-500);
+    }
+
   }
 }

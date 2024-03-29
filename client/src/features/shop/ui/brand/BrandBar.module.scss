@@ -1,0 +1,26 @@
+
+.blockNav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  margin: 0;
+  border-bottom: 1px solid var(--color-light-500);
+
+  .nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    > li {
+      all: unset;
+      margin: 0 10px;
+    }
+
+    button {
+      color: var(--color-light-100);
+    }
+  }
+
+}
+

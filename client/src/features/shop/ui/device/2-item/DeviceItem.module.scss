@@ -76,39 +76,10 @@
       > p {
 
       }
-
-      .btn {
-        display: flex;
-        justify-content: start;
-        align-items: center;
-        width: 33px;
-        height: 33px;
-        border-radius: 50%;
-        padding: 5px;
-        background: var(--color-light-500);
-        box-sizing: border-box;
-        transition: background .3s ease 0s;
-
-        > svg {
-          margin: 0 2px 0 0;
-
-          g path {
-
-            fill: var(--color-light-100);
-          }
-        }
-
-        &:hover {
-          background: var(--color-medium-900);
-          transition: background .3s ease 0s;
-
-        }
-
-        &:hover > svg g path {
-          fill: var(--color-dark-500);
-        }
-
-      }
+    }
+    .basked{
+      width: 33px;
+      height: 33px;
     }
   }
 }

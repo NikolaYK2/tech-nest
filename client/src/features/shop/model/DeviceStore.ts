@@ -18,6 +18,7 @@ export class DeviceStore {
   private device: DeviceType[];
   private selectedType: SelectedType;
   private selectedBrand: SelectedType;
+  private selectedDescribe: SelectedType;
 
   constructor() {
     this.types = [
@@ -64,6 +65,7 @@ export class DeviceStore {
     ]
     this.selectedType = {}
     this.selectedBrand = {}
+    this.selectedDescribe = {id: 1}
 
     makeAutoObservable(this)
   }
@@ -87,6 +89,9 @@ export class DeviceStore {
   setSelectedBrand = (type: SelectedType) => {
     this.selectedBrand = type
   }
+  setSelectedDescribe = (type: SelectedType) => {
+    this.selectedDescribe = type
+  }
 
   get getTypes() {
     return this.types
@@ -106,5 +111,9 @@ export class DeviceStore {
 
   get getSelectedBrand() {
     return this.selectedBrand
+  }
+
+  get getSelectedDescribe() {
+    return this.selectedDescribe
   }
 }

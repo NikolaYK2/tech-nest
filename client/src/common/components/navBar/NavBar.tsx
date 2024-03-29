@@ -8,6 +8,7 @@ type Props = Omit<ButtonProps, 'as'> & {
   navigation: { id?: number; name: string; }[],
   selected?: SelectedType,
   setSelected?: (data: SelectedType) => void,
+  callBack?: (value: number) => void
 }
 /**
  * @param {object} Props
@@ -18,7 +19,14 @@ type Props = Omit<ButtonProps, 'as'> & {
  * @param {boolean} [fullWidth] - Whether the component should take up the full width of its container.
  * @param {'link' | 'primary' | 'secondary' | 'tertiary'} [variant] - The variant of the component.
  */
-export const NavBar = observer(({navigation, className, fullWidth, variant, selected, setSelected}: Props) => {
+export const NavBar = observer(({
+                                  navigation,
+                                  className,
+                                  fullWidth,
+                                  variant,
+                                  selected,
+                                  setSelected,
+                                }: Props) => {
 
   const setSelectHandle = (el: SelectedType) => {
     setSelected && setSelected(el)
@@ -36,7 +44,9 @@ export const NavBar = observer(({navigation, className, fullWidth, variant, sele
               onClick={() => setSelectHandle(el)}>
             <PolyElement variant={variant}
                          className={`${selected && selected.id === el.id && isActiveBtn}`}
-                         fullWidth={fullWidth}>{el.name}
+                         fullWidth={fullWidth}
+            >
+              {el.name}
             </PolyElement>
           </li>)}
       </ul>

@@ -12,15 +12,17 @@ import {Basket} from "@/features/auth/ui/basket/Basket.tsx";
 import {Auth} from "@/features/auth/ui/Auth.tsx";
 import {AuthProvider} from "@/features/auth/model/AuthProvider.tsx";
 import '@/assets/styles/index.scss'
-import {DevicePage} from "@/features/shop/ui/DevicePage.tsx";
 import {DeviceProvider} from "@/features/shop/model/DeviceProvider.tsx";
-import {DeviceList} from "@/features/shop/ui/DeviceList.tsx";
+import {Shop} from "@/features/shop/ui/Shop.tsx";
+import {DeviceList} from "@/features/shop/ui/device/1-list/DeviceList.tsx";
+import {DevicePage} from "@/features/shop/ui/device/3-page/DevicePage.tsx";
 
 const router = createBrowserRouter([
   {
     path: SHOP_ROUTE,
     element: <App/>,
     children: [
+      {index: true, element: <Shop/>},
       {path: ADMIN_ROUTE, element: <Admin/>},
       {path: BASKET_ROUTE, element: <Basket/>},
       {path: AUTHORIZATION_ROUTE, element: <Auth/>},
