@@ -63,17 +63,17 @@
           margin: 0 0 0 10px;
         }
 
-        > input {
-          width: 100%;
-          padding: 9px 16px;
-          border-radius: 14px;
-          background: var(--color-dark-100);
-          color: var(--color-light-100);
-
-          &:-webkit-autofill {
-            transition: all 5000s ease-in-out 0s;
-          }
-        }
+        //> input {
+        //  width: 100%;
+        //  padding: 9px 16px;
+        //  border-radius: 14px;
+        //  background: var(--color-dark-100);
+        //  color: var(--color-light-100);
+        //
+        //  &:-webkit-autofill {
+        //    transition: all 5000s ease-in-out 0s;
+        //  }
+        //}
       }
 
       .flex {

@@ -4,9 +4,11 @@
     width: 100%;
     margin: 0 auto;
   }
+
   .paddingApp{
     padding: 5% 0;
   }
+
   .basketApp {
     display: flex;
     justify-content: start;
@@ -37,6 +39,17 @@
     &:hover > svg g path {
       fill: var(--color-dark-500);
     }
+  }
 
+  .inputApp{
+      width: 100%;
+      padding: 9px 16px;
+      border-radius: 14px;
+      background: var(--color-dark-100);
+      color: var(--color-light-100);
+
+      &:-webkit-autofill {
+        transition: all 5000s ease-in-out 0s;
+      }
   }
 }

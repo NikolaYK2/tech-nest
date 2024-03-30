@@ -48,7 +48,7 @@ export const Auth = observer(() => {
           {(switchForm ? registerData : loginData).map(inp =>
             <label key={inp.name} className={`${s.input} ${inp.type === 'checkbox' ? s.flex : ''}`}>
               <p>{inp.name}</p>{errors[inp.name] && <span>{(errors[inp.name]?.message) as string}</span>}
-              <input type={inp.type} autoComplete={'on'} {...register(inp.name,
+              <input className={'inputApp'} type={inp.type} autoComplete={'on'} {...register(inp.name,
                 {required: inp.type === 'checkbox' ? false : 'Fill in the box', validate: inp.validate})}
               />
             </label>)}
