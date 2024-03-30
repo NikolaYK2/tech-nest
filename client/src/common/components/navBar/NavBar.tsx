@@ -2,13 +2,14 @@ import s from './NavBar.module.scss'
 import {ButtonProps, PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {observer} from "mobx-react-lite";
 import {SelectedType} from "@/features/shop/model/DeviceStore.ts";
+import {useLocation, useNavigate} from "react-router-dom";
+import {ADMIN_ROUTE, AUTHORIZATION_ROUTE} from "@/common/utils/constRout.ts";
 
 
 type Props = Omit<ButtonProps, 'as'> & {
   navigation: { id?: number; name: string; }[],
   selected?: SelectedType,
   setSelected?: (data: SelectedType) => void,
-  callBack?: (value: number) => void
 }
 /**
  * @param {object} Props
@@ -28,8 +29,20 @@ export const NavBar = observer(({
                                   setSelected,
                                 }: Props) => {
 
+  const navigate = useNavigate();
+  const location = useLocation()
+
   const setSelectHandle = (el: SelectedType) => {
     setSelected && setSelected(el)
+  }
+
+  const admin = 'Admin panel'.toLowerCase();
+  const signIn = 'Sign in'.toLowerCase();
+
+  const routes = {[admin]: ADMIN_ROUTE, [signIn]: AUTHORIZATION_ROUTE}
+
+  const navigateClickHandle = (name: string) => {
+    if (name && location.pathname !== name) navigate(routes[name.toLowerCase()])
   }
 
   const isActiveBtn = variant === 'primary' ? s.primaryIsActive :
@@ -45,6 +58,7 @@ export const NavBar = observer(({
             <PolyElement variant={variant}
                          className={`${selected && selected.id === el.id && isActiveBtn}`}
                          fullWidth={fullWidth}
+                         onClick={() => navigateClickHandle(el.name)}
             >
               {el.name}
             </PolyElement>

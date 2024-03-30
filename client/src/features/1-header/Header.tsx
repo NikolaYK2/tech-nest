@@ -20,7 +20,7 @@ export const Header = observer(() => {
     <header className={`${s.header}`}>
       <section className={`${s.blockAuth} containerApp`}>
         <Logo/>
-        <NavBar variant={"secondary"} navigation={user.getIsAuth ? adminUser : publicUser}/>
+        <NavBar variant={"secondary"} className={s.auth} navigation={user.getIsAuth ? adminUser : publicUser}/>
       </section>
 
       <section className={`${s.blockFind}`}>

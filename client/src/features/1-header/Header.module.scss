@@ -13,6 +13,9 @@
     background: var(--color-dark-500);
     z-index: 2;
 
+    .auth button {
+        margin: 0 10px;
+    }
   }
 
   .blockFind {
