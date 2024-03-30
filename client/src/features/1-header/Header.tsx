@@ -13,7 +13,7 @@ export const Header = observer(() => {
   const {user} = useAuth();
   const {device} = useDevice();
 
-  const adminUser = [{name: 'Admin panel'}, {name: 'Sign in'}]
+  const adminUser = [{name: 'Admin panel'}, {name: 'Logout'}]
   const publicUser = [{name: 'Authorization'}]
 
   return (

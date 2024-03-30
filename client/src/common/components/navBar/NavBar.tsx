@@ -37,7 +37,7 @@ export const NavBar = observer(({
   }
 
   const admin = 'Admin panel'.toLowerCase();
-  const signIn = 'Sign in'.toLowerCase();
+  const signIn = 'Logout'.toLowerCase();
 
   const routes = {[admin]: ADMIN_ROUTE, [signIn]: AUTHORIZATION_ROUTE}
 
