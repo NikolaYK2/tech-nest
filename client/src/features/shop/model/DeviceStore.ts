@@ -14,7 +14,7 @@ export type SelectedType = Partial<Omit<Type, 'name'>>
 
 export class DeviceStore {
   private types: Type[];
-  private brands;
+  private brands:Type[];
   private device: DeviceType[];
   private selectedType: SelectedType;
   private selectedBrand: SelectedType;

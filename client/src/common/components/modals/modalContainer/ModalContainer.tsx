@@ -23,10 +23,10 @@ export const ModalContainer = ({name, children}: Props) => {
             <Dialog.Description/>
             {children}
             <Dialog.Close asChild>
-              <PolyElement className={s.buttonSave}>save</PolyElement>
+              <PolyElement className={s.buttonSave} variant={'tertiary'}>save</PolyElement>
             </Dialog.Close>
             <Dialog.Close asChild aria-label='Close'>
-              <PolyElement className={s.buttonClose}>Х</PolyElement>
+              <PolyElement className={s.buttonClose} variant={'tertiary'}>Х</PolyElement>
             </Dialog.Close>
           </Dialog.Content>
 

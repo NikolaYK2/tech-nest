@@ -1,0 +1,100 @@
+/* reset */
+button {
+  all: unset;
+}
+
+@keyframes slideDownAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.button{
+  border-radius: 14px;
+  padding: 10px 20px;
+  margin: 10px 10px 0 0;
+  color: var(--color-dark-100);
+  background: var(--color-light-500);
+  transition: background-color .3s ease 0s;
+
+  &:hover{
+    color: var(--color-light-100);
+    background-color: var(--color-dark-100);
+    transition: background-color .3s ease 0s;
+  }
+  &:focus{
+    box-shadow: 0 0 0 2px black;
+  }
+}
+
+.content {
+  max-width: 220px;
+  font-size: var(--font-s-p);
+  background-color: var(--color-light-100);
+  border-radius: 6px;
+  padding: 5px;
+  box-shadow: 0 10px 38px -10px var(--color-dark-opacity), 0px 10px 20px -15px var(--color-dark-opacity);
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  color: var(--color-dark-100);
+  z-index: 3;
+  cursor: pointer;
+
+  .arrow {
+    fill: var(--color-light-100);
+  }
+
+  .content[data-side='top'] {
+    animation-name: slideDownAndFade;
+  }
+
+  .content[data-side='right'] {
+    animation-name: slideDownAndFade;
+  }
+
+  .content[data-side='left'] {
+    animation-name: slideDownAndFade;
+  }
+
+  .item {
+    font-size: var(--font-s-p);
+    color: var(--violet-11);
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    position: relative;
+    user-select: none;
+    outline: none;
+    background: transparent;
+    transition: background .2s ease .1s;
+
+    &:before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom:0;
+      right: 0;
+      content: '';
+      display: block;
+      background: var(--color-medium-900);
+      width: 0;
+      height: 100%;
+      border-radius: 3px;
+      transition: width .3s ease 0.3s;
+
+      z-index: -1;
+
+    }
+
+    &:hover:before {
+      width: 100%;
+      transition: width .3s ease 0s;
+    }
+  }
+}
