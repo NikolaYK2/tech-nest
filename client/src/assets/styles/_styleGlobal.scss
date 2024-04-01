@@ -52,4 +52,23 @@
         transition: all 5000s ease-in-out 0s;
       }
   }
+
+  .btnApp{
+      border-radius: 14px;
+      padding: 10px 20px;
+      margin: 10px 0 0;
+      color: var(--color-dark-100);
+      background: var(--color-light-500);
+      transition: background-color .3s ease 0s;
+
+      &:hover {
+        color: var(--color-light-100);
+        background-color: var(--color-dark-100);
+        transition: background-color .3s ease 0s;
+      }
+
+      &:focus {
+        box-shadow: 0 0 0 2px black;
+      }
+    }
 }

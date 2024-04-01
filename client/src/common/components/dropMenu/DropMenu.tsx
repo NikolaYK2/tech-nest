@@ -11,7 +11,7 @@ export const DropMenu = ({name, options}: Props) => {
     <div>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className={s.button} aria-label="Customise options">{name}</button>
+          <button className={'btnApp'} aria-label="Customise options">{name}</button>
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Portal>

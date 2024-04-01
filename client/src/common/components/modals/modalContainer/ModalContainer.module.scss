@@ -23,6 +23,10 @@
   position: fixed;
   top: 0;
   inset: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  place-items: center;
   z-index: 2;
   animation: overlayShow 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -40,6 +44,7 @@
   max-height: 85vh;
   padding: 25px;
   animation: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
   z-index: 3;
 
   &:focus {
