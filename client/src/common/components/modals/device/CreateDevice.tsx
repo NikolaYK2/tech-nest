@@ -17,7 +17,10 @@ type DescriptionDevice = {
   description: string,
   number: string,
 }
-export const CreateDevice = observer(() => {
+type Props={
+  name:string,
+}
+export const CreateDevice = observer(({name}:Props) => {
   const {device} = useDevice();
   const [info, setInfo] = useState<DescriptionDevice[]>([])
   const deviceData: DeviceDataType[] = [
@@ -34,7 +37,7 @@ export const CreateDevice = observer(() => {
   }
 
   return (
-    <ModalContainer name={'Add device'}>
+    <ModalContainer name={name}>
       <DropMenu name={'Select type'} options={device.getTypes}/>
       <DropMenu name={'Select brand'} options={device.getBrands}/>
 

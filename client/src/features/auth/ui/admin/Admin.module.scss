@@ -1,0 +1,80 @@
+.blockCreate {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .item {
+    display: flex;
+    max-width: 340px;
+    width: 100%;
+    height: 170px;
+    margin: 1% 5% 5%;
+    background: var(--color-dark-100);
+    cursor: pointer;
+
+    .img {
+      position: relative;
+      flex: 0 1 50%;
+      overflow: hidden;
+
+      > img {
+        min-width: 100%;
+        height: 100%;
+        transform: translateX(0);
+        transition: transform .3s ease 0s;
+
+      }
+
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 100%;
+        content: '';
+        background: var(--color-dark-opacity);
+        transition: width .3s ease 0s;
+      }
+    }
+
+    .component {
+      flex: 0 1 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      text-transform: uppercase;
+      padding: 4.2%;
+      font-size: var(--font-s-medium);
+      font-weight: var(--f-w-b);
+
+      transition: flex .3s ease 0s;
+
+      > p {
+        font-size: var(--font-s-medium);
+        font-weight: var(--f-w-m);
+        color: var(--color-light-500);
+      }
+    }
+
+    &:hover {
+      .component {
+        flex: 0 0 70%;
+        transition: flex .3s ease 0s;
+      }
+
+      .img {
+        > img {
+          transform: translateX(-20%);
+          transition: transform .3s ease .1s;
+
+        }
+
+        &:after {
+          width: 100%;
+          transition: width .3s ease 0s;
+        }
+      }
+    }
+  }
+}
