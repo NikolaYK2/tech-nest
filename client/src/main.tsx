@@ -2,12 +2,7 @@ import ReactDOM from 'react-dom/client'
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import App from "@/app/App.tsx";
 import {Admin} from "@/features/auth/ui/admin/Admin.tsx";
-import {
-  ADMIN_ROUTE, AUTHORIZATION_ROUTE,
-  BASKET_ROUTE,
-  DEVICE_ROUTE,
-  SHOP_ROUTE
-} from "@/common/utils/constRout.ts";
+import {ADMIN_ROUTE, AUTHORIZATION_ROUTE, BASKET_ROUTE, DEVICE_ROUTE, SHOP_ROUTE} from "@/common/utils/constRout.ts";
 import {Basket} from "@/features/auth/ui/basket/Basket.tsx";
 import {Auth} from "@/features/auth/ui/Auth.tsx";
 import {AuthProvider} from "@/features/auth/model/AuthProvider.tsx";
