@@ -96,7 +96,7 @@
   background-image: linear-gradient(45deg, var(--color-error) 3%, var(--color-error-opacity) 28%, transparent 50%);
   background-size: 100% auto;//делаем анимацию
   background-position: left center; //делаем анимацию
-  transition: background-size .5s ease 0s, background-position .5s ease 0s, color .5s ease .3s;
+  transition: background-size .3s ease 0s, background-position .3s ease 0s, color .5s ease .3s;
 
   &:hover{
     background-size: 800% auto; //делаем анимацию

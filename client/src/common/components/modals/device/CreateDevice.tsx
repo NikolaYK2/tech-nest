@@ -7,7 +7,12 @@ import {useState} from "react";
 import {v1} from "uuid";
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 
-type DescriptionDevice = {
+type DeviceDataType = {
+  name: string,
+  placeholder?: string,
+  type: 'text' | 'file' | 'number',
+}
+type DescriptionDevice = Partial<Pick<DeviceDataType, 'type'>> & {
   title: string,
   description: string,
   number: string,
@@ -15,7 +20,7 @@ type DescriptionDevice = {
 export const CreateDevice = observer(() => {
   const {device} = useDevice();
   const [info, setInfo] = useState<DescriptionDevice[]>([])
-  const deviceData = [
+  const deviceData: DeviceDataType[] = [
     {name: 'Name device', placeholder: 'TV', type: 'text'},
     {name: 'price device', placeholder: '2500', type: 'number'},
     {name: 'device image', type: 'file'},
@@ -24,7 +29,7 @@ export const CreateDevice = observer(() => {
   const addInfoHandle = () => {
     setInfo([...info, {title: '', description: '', number: v1()}])
   }
-  const deleteInfoHandle = (number:string) => {
+  const deleteInfoHandle = (number: string) => {
     setInfo(info.filter(info => info.number !== number))
   }
 
@@ -43,11 +48,13 @@ export const CreateDevice = observer(() => {
           }
         </fieldset>
       )}
-      <PolyElement className={'btnApp'} onClick={addInfoHandle}>add info</PolyElement>
+
+      <button className={'btnApp'} onClick={addInfoHandle}>add info</button>
       {info.map(el =>
-        <div>
-          <input type="text"/>
-          <PolyElement variant={'error'} onClick={()=>deleteInfoHandle(el.number)}>dell</PolyElement>
+        <div className={s.containerInfo}>
+          <input className={'inputApp'} type={'text'} placeholder={'name'}/>
+          <input className={'inputApp'} type={'text'} placeholder={'describe'}/>
+          <PolyElement variant={'error'} onClick={() => deleteInfoHandle(el.number)}>dell</PolyElement>
         </div>
       )}
     </ModalContainer>
