@@ -1,6 +1,7 @@
 import {$host} from "@/app/api";
 
-export const AuthApi = {
+
+export const authApi = {
   async registration(email: string, password: string) {
     return await $host.post('auth/registration', {email, password, role: 'ADMIN'});
   },

@@ -1,40 +1,61 @@
-import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import {SubmitHandler, useForm} from "react-hook-form";
 import s from './Auth.module.scss'
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
-import {useAuth} from "@/features/auth/lib/useAuth.ts";
 import {observer} from "mobx-react-lite";
 import {useState} from "react";
 
 type AuthType = {
-  name: string,
-  type: string,
+  label: string,
+  name: "email" | "password" | "remember me" | "repeat password" | 'name',
+  type?: string,
   required?: boolean,
-  validate?: (value: string) => true | "Passwords do not match";
+  validate?: (value: string | boolean) => true | "Passwords do not match";
+}
+type FormType = {
+  name: string,
+  email: string,
+  password: string,
+  "repeat password": string,
+  'remember me': boolean
 }
 export const Auth = observer(() => {
   const [switchForm, setSwitchForm] = useState(false)
 
-  const {} = useAuth()
-  const {handleSubmit, register, watch, formState: {errors}} = useForm();
+  const {handleSubmit, register, watch, formState: {errors}} = useForm<FormType>({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      "remember me": false,
+      "repeat password": "",
+    }
+  });
 
   const loginData: AuthType[] = [
-    {name: 'Username or email address *', type: 'text'},
-    {name: 'Password *', type: 'password'},
-    {name: 'Remember me', type: 'checkbox', required: false},
+    {label: 'Username or email address *', name: 'email', type: 'text'},
+    {label: 'Password *', name: 'password', type: 'password'},
+    {label: 'Remember me', name: 'remember me', type: 'checkbox', required: false},
   ]
   const registerData: AuthType[] = [
-    {name: 'Username *', type: 'text'},
-    {name: 'Email address *', type: 'email'},
-    {name: 'Password *', type: 'password'},
+    {label: 'Username *', name: 'name', type: 'text'},
+    {label: 'Email address *', name: 'email', type: 'email'},
+    {label: 'Password *', name: 'password', type: 'password'},
     {
-      name: 'Repeat Password *',
+      label: 'Repeat Password *',
+      name: 'repeat password',
       type: 'password',
-      validate: (value: string) => value === watch('Password *') || "Passwords do not match"
+      validate: (value: string | boolean) => value === watch('password') || "Passwords do not match"
     }
   ]
 
-  const onSubmit: SubmitHandler<FieldValues> = data => {
+  const onSubmit: SubmitHandler<FormType> = async data => {
     console.log(data)
+    if (switchForm) {
+      // const res = await authApi.registration({email:data});
+      // console.log(res)
+    } else {
+      // const res = await authApi.login()
+    }
   }
 
   return (
@@ -46,10 +67,14 @@ export const Auth = observer(() => {
         <form className={`${s.form} ${switchForm && s.reversForm}`} onSubmit={handleSubmit(onSubmit)}>
 
           {(switchForm ? registerData : loginData).map(inp =>
-            <label key={inp.name} className={`${s.input} ${inp.type === 'checkbox' ? s.flex : ''}`}>
-              <p>{inp.name}</p>{errors[inp.name] && <span>{(errors[inp.name]?.message) as string}</span>}
+            <label key={inp.label} className={`${s.input} ${inp.type === 'checkbox' ? s.flex : ''}`}>
+              <p>{inp.label}</p>{errors[inp.name] && <span>{(errors[inp.name]?.message) as string}</span>}
+
               <input className={'inputApp'} type={inp.type} autoComplete={'on'} {...register(inp.name,
-                {required: inp.type === 'checkbox' ? false : 'Fill in the box', validate: inp.validate})}
+                {
+                  required: inp.type === 'checkbox' ? false : 'Fill in the box',
+                  validate: inp.validate,
+                })}
               />
             </label>)}
 
