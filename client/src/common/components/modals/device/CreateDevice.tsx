@@ -24,6 +24,9 @@ export const CreateDevice = observer(() => {
   const addInfoHandle = () => {
     setInfo([...info, {title: '', description: '', number: v1()}])
   }
+  const deleteInfoHandle = (number:string) => {
+    setInfo(info.filter(info => info.number !== number))
+  }
 
   return (
     <ModalContainer name={'Add device'}>
@@ -40,11 +43,11 @@ export const CreateDevice = observer(() => {
           }
         </fieldset>
       )}
-      <PolyElement  className={'btnApp'} onClick={addInfoHandle}>add info</PolyElement>
+      <PolyElement className={'btnApp'} onClick={addInfoHandle}>add info</PolyElement>
       {info.map(el =>
         <div>
           <input type="text"/>
-          <button>dell</button>
+          <PolyElement variant={'error'} onClick={()=>deleteInfoHandle(el.number)}>dell</PolyElement>
         </div>
       )}
     </ModalContainer>

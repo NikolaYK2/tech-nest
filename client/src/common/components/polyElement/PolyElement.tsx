@@ -4,7 +4,7 @@ export type ButtonProps<T extends ElementType = 'button'> = {
   as?: T
   className?: string,
   fullWidth?: boolean
-  variant?: 'link' | 'primary' | 'secondary' | 'tertiary',
+  variant?: 'link' | 'primary' | 'secondary' | 'tertiary' | 'error',
 } & ComponentPropsWithoutRef<T>
 
 export const PolyElement = <T extends ElementType = 'button'>(
