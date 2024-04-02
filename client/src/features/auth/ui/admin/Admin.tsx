@@ -7,8 +7,8 @@ import s from './Admin.module.scss'
 export const Admin = () => {
 
   const arrCreate = [
-    {img: TypeImg, component: <CreateType name={'Add type'}/>, description:''},
-    {img: DeviceImg, component: <CreateDevice name={'Add device'}/>, description:'Add a description, upload an image'}
+    {img: TypeImg, component: <CreateType name={'Add type'}/>, description: ''},
+    {img: DeviceImg, component: <CreateDevice name={'Add device'}/>, description: 'Add a description, upload an image'},
   ]
 
   return (
