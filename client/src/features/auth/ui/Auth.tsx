@@ -4,6 +4,9 @@ import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {observer} from "mobx-react-lite";
 import {useState} from "react";
 import {authApi} from "@/features/auth/api/authApi.ts";
+import {useAuth} from "@/features/auth/lib/useAuth.ts";
+import {useNavigate} from "react-router-dom";
+import {SHOP_ROUTE} from "@/common/utils/constRout.ts";
 
 type AuthType = {
   label: string,
@@ -21,7 +24,9 @@ type FormType = {
 }
 export const Auth = observer(() => {
   const [switchForm, setSwitchForm] = useState(false)
+  const {user} = useAuth()
 
+  const navigate = useNavigate();
   const {handleSubmit, register, watch, formState: {errors}} = useForm<FormType>();
 
   const loginData: AuthType[] = [
@@ -42,13 +47,19 @@ export const Auth = observer(() => {
   ]
 
   const onSubmit: SubmitHandler<FormType> = async data => {
-    console.log(data)
-    if (switchForm) {
-      const res = await authApi.registration(data.email, data.password);
-      console.log(res)
-      // console.log(res)
-    } else {
-      // const res = await authApi.login()
+    try {
+      if (switchForm) {
+        const res = await authApi.registration(data.email, data.password);
+        user.setUser(res)
+        user.setIsAuth(true)
+      } else {
+        const res = await authApi.login(data.email, data.password)
+        user.setUser(res)
+        user.setIsAuth(true)
+      }
+      navigate(SHOP_ROUTE)
+    } catch (e: any) {
+      alert(e.response.data.message)
     }
   }
 

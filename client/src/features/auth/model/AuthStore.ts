@@ -5,12 +5,12 @@ export class AuthStore {
   private user;
 
   constructor() {
-    this.isAuth = true
+    this.isAuth = false
     this.user = {}
     makeAutoObservable(this)
   }
 
-  setIsAuth(value: boolean) {
+  setIsAuth = (value: boolean) => {
     this.isAuth = value
   }
 

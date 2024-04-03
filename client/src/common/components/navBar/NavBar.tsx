@@ -10,6 +10,7 @@ type Props = Omit<ButtonProps, 'as'> & {
   navigation: { id?: number; name: string; }[],
   selected?: SelectedType,
   setSelected?: (data: SelectedType) => void,
+  callback?:any
 }
 /**
  * @param {object} Props
@@ -27,6 +28,7 @@ export const NavBar = observer(({
                                   variant,
                                   selected,
                                   setSelected,
+  callback
                                 }: Props) => {
 
   const navigate = useNavigate();
@@ -58,7 +60,10 @@ export const NavBar = observer(({
             <PolyElement variant={variant}
                          className={`${selected && selected.id === el.id && isActiveBtn}`}
                          fullWidth={fullWidth}
-                         onClick={() => navigateClickHandle(el.name)}
+                         onClick={() => {
+                           navigateClickHandle(el.name);
+                           el.name === 'Authorization' && callback(true);
+                         }}
             >
               {el.name}
             </PolyElement>
