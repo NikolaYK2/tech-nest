@@ -4,13 +4,13 @@ import {observer} from "mobx-react-lite";
 import {SelectedType} from "@/features/shop/model/DeviceStore.ts";
 import {useLocation, useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE, AUTHORIZATION_ROUTE} from "@/common/utils/constRout.ts";
+import {useAuth} from "@/features/auth/lib/useAuth.ts";
 
 
 type Props = Omit<ButtonProps, 'as'> & {
   navigation: { id?: number; name: string; }[],
   selected?: SelectedType,
   setSelected?: (data: SelectedType) => void,
-  callback?:any
 }
 /**
  * @param {object} Props
@@ -28,23 +28,36 @@ export const NavBar = observer(({
                                   variant,
                                   selected,
                                   setSelected,
-  callback
                                 }: Props) => {
 
+  const {user} = useAuth()
   const navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
+
+  const admin = 'Admin panel'.toLowerCase();
+  const signIn = 'Logout'.toLowerCase();
+  const auth = 'Authorization'.toLowerCase();
+
+  const routes = {
+    [admin]: () => navigate(ADMIN_ROUTE),
+    [signIn]: () => {
+      user.setUser({});
+      user.setIsAuth(false);
+      navigate(AUTHORIZATION_ROUTE);
+      localStorage.removeItem('token')
+    },
+    [auth]: () => navigate(AUTHORIZATION_ROUTE),
+  }
 
   const setSelectHandle = (el: SelectedType) => {
     setSelected && setSelected(el)
   }
 
-  const admin = 'Admin panel'.toLowerCase();
-  const signIn = 'Logout'.toLowerCase();
-
-  const routes = {[admin]: ADMIN_ROUTE, [signIn]: AUTHORIZATION_ROUTE}
-
   const navigateClickHandle = (name: string) => {
-    if (name && location.pathname !== name) navigate(routes[name.toLowerCase()])
+    const action = routes[name]
+    if (action) {
+      action();
+    }
   }
 
   const isActiveBtn = variant === 'primary' ? s.primaryIsActive :
@@ -56,13 +69,13 @@ export const NavBar = observer(({
         {navigation.map(el =>
           <li key={el.name}
               className={`${s.li} ${selected && selected.id === el.id && s[variant ? variant : '']}`}
-              onClick={() => setSelectHandle(el)}>
+              onClick={() => setSelectHandle(el)}
+          >
             <PolyElement variant={variant}
                          className={`${selected && selected.id === el.id && isActiveBtn}`}
                          fullWidth={fullWidth}
                          onClick={() => {
-                           navigateClickHandle(el.name);
-                           el.name === 'Authorization' && callback(true);
+                           navigateClickHandle(el.name.toLowerCase());
                          }}
             >
               {el.name}

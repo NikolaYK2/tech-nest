@@ -12,7 +12,7 @@ export const Header = observer(() => {
 
   const {user} = useAuth();
   const {device} = useDevice();
-
+  console.log(user.getIsAuth)
   const adminUser = [{name: 'Admin panel'}, {name: 'Logout'}]
   const publicUser = [{name: 'Authorization'}]
 
@@ -20,10 +20,7 @@ export const Header = observer(() => {
     <header className={`${s.header}`}>
       <section className={`${s.blockAuth} containerApp`}>
         <Logo/>
-        <NavBar variant={"secondary"}
-                className={s.auth}
-                navigation={user.getIsAuth ? adminUser : publicUser}
-                callback={user.setIsAuth}/>
+        <NavBar variant={"secondary"} className={s.auth} navigation={user.getIsAuth ? adminUser : publicUser}/>
       </section>
 
       <section className={`${s.blockFind}`}>

@@ -4,7 +4,7 @@ export const $host = axios.create({
   baseURL: import.meta.env.VITE_BASE_APP_URL  + 'api/'
 })
 export const $authHost = axios.create({
-  baseURL: import.meta.env.VITE_BASE_APP_URL
+  baseURL: import.meta.env.VITE_BASE_APP_URL + 'api/'
 
 })
 

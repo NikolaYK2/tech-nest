@@ -1,4 +1,3 @@
-//декодирование токена и проверка на валидность
 import {NextFunction, Request, Response} from "express";
 import jwt from 'jsonwebtoken'
 import checkSecretKey from "../utils/checkSecretKey";
