@@ -16,7 +16,7 @@ export const Admin = () => {
       ADMIN
       <div className={s.blockCreate}>
         {arrCreate.map(el =>
-          <label className={s.item}>
+          <label key={el.img} className={s.item}>
             <div className={s.img}>
               <img src={el.img} alt=""/>
             </div>

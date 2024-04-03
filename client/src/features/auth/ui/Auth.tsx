@@ -3,6 +3,7 @@ import s from './Auth.module.scss'
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {observer} from "mobx-react-lite";
 import {useState} from "react";
+import {authApi} from "@/features/auth/api/authApi.ts";
 
 type AuthType = {
   label: string,
@@ -12,24 +13,16 @@ type AuthType = {
   validate?: (value: string | boolean) => true | "Passwords do not match";
 }
 type FormType = {
-  name: string,
-  email: string,
-  password: string,
+  "name": string,
+  "email": string,
+  "password": string,
   "repeat password": string,
   'remember me': boolean
 }
 export const Auth = observer(() => {
   const [switchForm, setSwitchForm] = useState(false)
 
-  const {handleSubmit, register, watch, formState: {errors}} = useForm<FormType>({
-    defaultValues: {
-      name: '',
-      email: '',
-      password: '',
-      "remember me": false,
-      "repeat password": "",
-    }
-  });
+  const {handleSubmit, register, watch, formState: {errors}} = useForm<FormType>();
 
   const loginData: AuthType[] = [
     {label: 'Username or email address *', name: 'email', type: 'text'},
@@ -51,7 +44,8 @@ export const Auth = observer(() => {
   const onSubmit: SubmitHandler<FormType> = async data => {
     console.log(data)
     if (switchForm) {
-      // const res = await authApi.registration({email:data});
+      const res = await authApi.registration(data.email, data.password);
+      console.log(res)
       // console.log(res)
     } else {
       // const res = await authApi.login()
