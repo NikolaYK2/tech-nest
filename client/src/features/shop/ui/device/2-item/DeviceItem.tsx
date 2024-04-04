@@ -15,12 +15,13 @@ export const DeviceItem = ({device}: Props) => {
       <div className={s.blockDevice}>
         <p className={s.name}>{device.name}</p>
         <div className={s.img}>
-          <img src={device.img} alt=""/>
+          <img src={import.meta.env.VITE_BASE_APP_URL + device.img} alt=""/>
         </div>
         <div className={s.price}>
           <p>{device.price}</p>
           <div className={s.basked}>
-            <PolyElement variant={"link"} onClick={(e)=>e.stopPropagation()} className={'basketApp'}><IconSVG name={"basket"}/></PolyElement>
+            <PolyElement variant={"link"} onClick={(e) => e.stopPropagation()} className={'basketApp'}><IconSVG
+              name={"basket"}/></PolyElement>
           </div>
         </div>
       </div>

@@ -12,7 +12,9 @@ export const Shop = observer(() => {
     deviceApi.fetchTypes()
       .then(res => device.setTypes(res));
     deviceApi.fetchBrands()
-      .then(res=>device.setBrands(res))
+      .then(res=>device.setBrands(res));
+    deviceApi.fetchDevices()
+      .then(res=>device.setDevice(res.rows))
   }, []);
 
   return (
