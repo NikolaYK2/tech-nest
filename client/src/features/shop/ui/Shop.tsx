@@ -11,6 +11,8 @@ export const Shop = observer(() => {
   useEffect(() => {
     deviceApi.fetchTypes()
       .then(res => device.setTypes(res));
+    deviceApi.fetchBrands()
+      .then(res=>device.setBrands(res))
   }, []);
 
   return (

@@ -14,5 +14,13 @@ export const deviceApi = {
   async fetchTypes() {
     const res = await $host.get<ResponseType>('type/');
     return res.data;
-  }
+  },
+  async createBrand(brand: any) {
+    const res = await $authHost.post('brand/', brand);
+    return res;
+  },
+  async fetchBrands() {
+    const res = await $host.get<ResponseType>('brand/');
+    return res.data;
+  },
 };

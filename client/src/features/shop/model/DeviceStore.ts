@@ -28,10 +28,10 @@ export class DeviceStore {
       // {id: 4, name: 'TV'}
     ]
     this.brands = [
-      {id: 1, name: 'Samsung'},
-      {id: 2, name: 'Apple'},
-      {id: 3, name: 'Lenovo'},
-      {id: 4, name: 'Asus'},
+      // {id: 1, name: 'Samsung'},
+      // {id: 2, name: 'Apple'},
+      // {id: 3, name: 'Lenovo'},
+      // {id: 4, name: 'Asus'},
     ]
     this.device = [
       {
