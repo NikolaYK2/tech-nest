@@ -3,30 +3,34 @@ import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {IconSVG} from "@/common/components/IconSvg/IconSVG.tsx";
 import {observer} from "mobx-react-lite";
 import {Details} from "@/features/shop/ui/device/3-page/detailes/Details.tsx";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
+import {deviceApi} from "@/features/shop/api/deviceApi.ts";
+import {DeviceType} from "@/features/shop/model/DeviceStore.ts";
 
 export const DevicePage = observer(() => {
-  const devices = {
-    id: 1,
-    name: 'Iphone 12 pro',
-    price: 25000,
-    rating: 5,
-    img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
-  }
+  const [device, setDevice] = useState<DeviceType | null>(null);
+  const {id} = useParams<{ id: string }>();
+  console.log(device)
 
+  useEffect(() => {
+    id && deviceApi.fetchOneDevice(+id)
+      .then(res => setDevice(res))
+  }, []);
 
   return (
     <section className={`containerApp paddingApp ${s.containerDevicePage}`}>
       <section className={s.productSummary}>
         <div className={s.img}>
-          <img src={devices.img} alt=""/>
+          <img src={import.meta.env.VITE_BASE_APP_URL + device?.img} alt=""/>
         </div>
         <div className={s.item}>
           <div className={s.nameBrand}>
-            <h2>{devices.name}</h2>
+            <h2>{device?.name}</h2>
             <p>Apple</p>
           </div>
           <div className={s.describe}></div>
-          <div className={s.price}>${devices.price}</div>
+          <div className={s.price}>${device?.price}</div>
           <div className={s.basket}>
             <PolyElement className={`basketApp`} variant={"link"}><IconSVG name={"basket"}/></PolyElement>
           </div>

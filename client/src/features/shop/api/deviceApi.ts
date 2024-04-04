@@ -1,25 +1,15 @@
 import {$authHost, $host} from "@/app/api";
+import {DeviceType} from "@/features/shop/model/DeviceStore.ts";
 
-type ResponseType = {
-  createdAt: string,
-  id: number,
-  name: string,
-  updatedAt: string,
-}
-type DeviceType={
-  brandId:number,
-  createdAt:string,
-  id: number,
-  img:string,
-  name: string,
-  price:number,
-  rating:number,
-  typeId:number,
-  updatedAt:string,
-}
-type DeviceTypePage={
-  count:number,
-  rows:DeviceType[]
+type ResponseType = Pick<DeviceType,
+  | 'createdAt'
+  | 'id'
+  | 'name'
+  | 'updatedAt'>
+
+type DeviceTypePage = {
+  count: number,
+  rows: DeviceType[]
 }
 
 export const deviceApi = {
@@ -45,11 +35,10 @@ export const deviceApi = {
   },
   async fetchDevices() {
     const res = await $host.get<DeviceTypePage>('device/');
-    console.log(res.data)
     return res.data;
   },
   async fetchOneDevice(id: number) {
-    const res = await $host.get<any>(`device/${id}`);
+    const res = await $host.get(`device/${id}`);
     return res.data;
   },
 };

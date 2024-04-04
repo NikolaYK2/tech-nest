@@ -5,16 +5,21 @@ export type Type = {
   id: number,
   name: string,
 }
-export type DeviceType = Type & {
+export type DeviceType = Type &{
+  brandId: number,
+  createdAt: string,
+  img: string,
+  info: []
   price: number,
   rating: number,
-  img: string,
+  typeId:number,
+  updatedAt:string,
 }
 export type SelectedType = Partial<Omit<Type, 'name'>>
 
 export class DeviceStore {
   private types: Type[];
-  private brands:Type[];
+  private brands: Type[];
   private device: DeviceType[];
   private selectedType: SelectedType;
   private selectedBrand: SelectedType;
