@@ -66,7 +66,7 @@ export const NavBar = observer(({
   return (
     <nav className={s.nav}>
       <ul className={`${s.ul} ${className}`}>
-        {navigation.map(el =>
+        {Array.isArray(navigation) && navigation.map(el =>
           <li key={el.name}
               className={`${s.li} ${selected && selected.id === el.id && s[variant ? variant : '']}`}
               onClick={() => setSelectHandle(el)}

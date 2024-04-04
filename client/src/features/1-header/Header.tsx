@@ -12,9 +12,10 @@ export const Header = observer(() => {
 
   const {user} = useAuth();
   const {device} = useDevice();
-  console.log(user.getIsAuth)
+
   const adminUser = [{name: 'Admin panel'}, {name: 'Logout'}]
   const publicUser = [{name: 'Authorization'}]
+
 
   return (
     <header className={`${s.header}`}>
