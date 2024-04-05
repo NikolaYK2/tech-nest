@@ -9,14 +9,20 @@ import {deviceApi} from "@/features/shop/api/deviceApi.ts";
 import {DeviceType} from "@/features/shop/model/DeviceStore.ts";
 
 export const DevicePage = observer(() => {
+
   const [device, setDevice] = useState<DeviceType | null>(null);
   const {id} = useParams<{ id: string }>();
-  console.log(device)
 
   useEffect(() => {
-    id && deviceApi.fetchOneDevice(+id)
-      .then(res => setDevice(res))
+    if (id) {
+      deviceApi.fetchOneDevice(+id)
+        .then(res => setDevice(res))
+    }
   }, []);
+
+  if (!device) {
+    return null
+  }
 
   return (
     <section className={`containerApp paddingApp ${s.containerDevicePage}`}>
