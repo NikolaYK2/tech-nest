@@ -5,32 +5,33 @@ import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 
 type Props = {
   name: string,
-  description?: string
+  description?: string,
+  callback?: () => void,
   children: ReactNode
 }
 
 export const ModalContainer = ({name, children}: Props) => {
   return (
-      <Dialog.Root>
-        <Dialog.Trigger>
-          {name}
-        </Dialog.Trigger>
+    <Dialog.Root>
+      <Dialog.Trigger>
+        {name}
+      </Dialog.Trigger>
 
-        <Dialog.Portal>
-          <Dialog.Overlay className={s.containerBC}/>
-          <Dialog.Content className={s.content}>
-            <Dialog.Title className={s.title}>{name}</Dialog.Title>
-            <Dialog.Description/>
-            {children}
-            <Dialog.Close asChild>
-              <PolyElement className={s.buttonSave} variant={'tertiary'}>save</PolyElement>
-            </Dialog.Close>
-            <Dialog.Close asChild aria-label='Close'>
-              <PolyElement className={s.buttonClose} variant={'tertiary'}>Х</PolyElement>
-            </Dialog.Close>
-          </Dialog.Content>
+      <Dialog.Portal>
+        <Dialog.Overlay className={s.containerBC}/>
+        <Dialog.Content className={s.content}>
+          <Dialog.Title className={s.title}>{name}</Dialog.Title>
+          <Dialog.Description/>
+          {children}
+          <Dialog.Close asChild>
+            <PolyElement className={s.buttonSave} variant={'tertiary'}>save</PolyElement>
+          </Dialog.Close>
+          <Dialog.Close asChild aria-label='Close'>
+            <PolyElement className={s.buttonClose} variant={'tertiary'}>Х</PolyElement>
+          </Dialog.Close>
+        </Dialog.Content>
 
-        </Dialog.Portal>
-      </Dialog.Root>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 }
