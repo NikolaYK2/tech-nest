@@ -14,7 +14,7 @@
     z-index: 2;
 
     .auth button {
-        margin: 0 10px;
+      margin: 0 10px;
     }
   }
 
@@ -26,8 +26,17 @@
     background: var(--color-medium-900);
     z-index: 2;
 
-    > div > button {
+    .shopBtn {
       padding: 0 min(3.3%, 24px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .3s ease 0s, visibility .3s ease 1s;
+    }
+
+    .activeShopBtn {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 1s ease .1s, visibility .3s ease 0s;
     }
 
     .span {

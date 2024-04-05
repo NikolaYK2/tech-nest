@@ -9,12 +9,12 @@ export const Shop = observer(() => {
   const {device} = useDevice();
 
   useEffect(() => {
+    deviceApi.fetchBrands()
+      .then(res => device.setBrands(res));
+    deviceApi.fetchDevices()
+      .then(res => device.setDevice(res.rows));
     deviceApi.fetchTypes()
       .then(res => device.setTypes(res));
-    deviceApi.fetchBrands()
-      .then(res=>device.setBrands(res));
-    deviceApi.fetchDevices()
-      .then(res=>device.setDevice(res.rows))
   }, []);
 
   return (

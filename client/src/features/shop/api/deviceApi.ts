@@ -12,9 +12,12 @@ type DeviceTypePage = {
   rows: DeviceType[]
 }
 
+type CreateType = {
+  name: string
+}
 export const deviceApi = {
-  async createType(type: any) {
-    const res = await $authHost.get('type/', type);
+  async createType(type: CreateType) {
+    const res = await $authHost.post('type/', type);
     return res;
   },
   async fetchTypes() {
