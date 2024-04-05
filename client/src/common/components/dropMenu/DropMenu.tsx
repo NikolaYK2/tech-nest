@@ -15,7 +15,7 @@ export const DropMenu = ({name, options}: Props) => {
         </DropdownMenu.Trigger>
 
         <DropdownMenu.Portal>
-          <DropdownMenu.Content className={s.content} sideOffset={5}>
+          <DropdownMenu.Content  className={s.content} sideOffset={5}>
             {options.map(option =>
               <DropdownMenu.Item key={option.id} className={s.item}>
                 {option.name}

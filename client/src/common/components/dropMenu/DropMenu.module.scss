@@ -34,7 +34,7 @@ button {
 }
 
 .content {
-  max-width: 220px;
+  max-width: 520px;
   font-size: var(--font-s-p);
   background-color: var(--color-dark-100);
   border-radius: 6px;
@@ -44,6 +44,8 @@ button {
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   color: var(--color-light-200);
+  overflow-Y: auto;
+  max-height: 300px;
   z-index: 3;
   cursor: pointer;
 
