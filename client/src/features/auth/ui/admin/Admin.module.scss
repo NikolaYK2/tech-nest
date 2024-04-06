@@ -51,7 +51,7 @@
       transition: flex .3s ease 0s;
 
       > p {
-        width: 100px;
+        max-width: 150px;
         font-size: var(--font-s-medium);
         font-weight: var(--f-w-m);
         color: var(--color-light-500);

@@ -1,23 +1,24 @@
 import {ModalContainer} from "@/common/components/modals/modalContainer/ModalContainer.tsx";
-import s from './CreateType.module.scss'
 import {useInput} from "@/common/hooks/useInput.ts";
-import {deviceApi} from "@/features/shop/api/deviceApi.ts";
-import {observer} from "mobx-react-lite";
 
-type Props = {
+type ValueType = {
   name: string
 }
-export const CreateType = observer(({name}: Props) => {
+type Props = {
+  name: string
+  fetchCallback: (value: ValueType) => Promise<any>
+}
+export const Create = ({name, fetchCallback}: Props) => {
   const {value, onChange, setValue} = useInput('');
 
   const addType = () => {
-    deviceApi.createType({name: value})
+    fetchCallback({name: value})
       .then(_ => setValue(''))
   }
 
   return (
     <ModalContainer name={name} callback={addType}>
-      <fieldset className={s.container}>
+      <fieldset>
         <label htmlFor='type'>
           Type
         </label>
@@ -25,4 +26,4 @@ export const CreateType = observer(({name}: Props) => {
       </fieldset>
     </ModalContainer>
   );
-});
+};
