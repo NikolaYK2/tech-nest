@@ -2,17 +2,17 @@ import {ModalContainer} from "@/common/components/modals/modalContainer/ModalCon
 import {useInput} from "@/common/hooks/useInput.ts";
 
 type ValueType = {
-  name: string
+  name: string,
 }
 type Props = {
-  name: string
-  fetchCallback: (value: ValueType) => Promise<any>
+  name: string,
+  fetchCallback: (value: ValueType) => Promise<any>,
 }
 export const Create = ({name, fetchCallback}: Props) => {
   const {value, onChange, setValue} = useInput('');
 
-  const addType = () => {
-    fetchCallback({name: value})
+  const addType = async () => {
+    await fetchCallback({name: value})
       .then(_ => setValue(''))
   }
 
