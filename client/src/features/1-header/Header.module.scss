@@ -36,7 +36,7 @@
     .activeShopBtn {
       opacity: 1;
       visibility: visible;
-      transition: opacity 1s ease .1s, visibility .3s ease 0s;
+      transition: opacity .2s ease .1s, visibility .3s ease 0s;
     }
 
     .span {
@@ -115,6 +115,6 @@
 
   .activeNav {
     transform: translateY(0);
-    transition: transform 1s ease 0s;
+    transition: transform .3s ease 0s;
   }
 }
