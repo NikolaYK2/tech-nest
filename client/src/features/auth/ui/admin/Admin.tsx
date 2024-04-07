@@ -1,13 +1,14 @@
-import {CreateDevice} from "@/common/components/modals/device/CreateDevice.tsx";
 import DeviceImg from '@/assets/img/device/device.jpg'
 import TypeImg from '@/assets/img/device/types.jpg'
 import BrandImg from '@/assets/img/device/brands.jpg'
 import {Create} from "@/common/components/modals/creat/Create.tsx";
 import {deviceApi} from "@/features/shop/api/deviceApi.ts";
 import s from './Admin.module.scss'
+import {useDevice} from "@/features/shop/lib/useDevice.ts";
+import {DropMenu} from "@/common/components/dropMenu/DropMenu.tsx";
 
 export const Admin = () => {
-
+  const {device} = useDevice();
   const arrCreate = [
     {
       img: TypeImg,
@@ -21,7 +22,18 @@ export const Admin = () => {
     },
     {
       img: DeviceImg,
-      component: <CreateDevice name={'Add device'}/>,
+      component: <Create name={'Add device'}
+                         dropMenu={[
+                           <DropMenu name={'Select type'} options={device.getTypes}/>,
+                           <DropMenu name={'Select brand'} options={device.getBrands}/>
+                         ]}
+                         optionsDropMenu={[
+                           {placeholder: 'name device', type: 'text'},
+                           {placeholder: 'price device', type: 'text'},
+                           {type: 'file'},
+                         ]}
+                         isInfo={true}
+      />,
       description: 'Add a new device with detailed specifications'
     },
   ]

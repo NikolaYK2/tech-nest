@@ -53,18 +53,6 @@ button {
     fill: var(--color-dark-100);
   }
 
-  .content[data-side='top'] {
-    animation-name: slideDownAndFade;
-  }
-
-  .content[data-side='right'] {
-    animation-name: slideDownAndFade;
-  }
-
-  .content[data-side='left'] {
-    animation-name: slideDownAndFade;
-  }
-
   .item {
     font-size: var(--font-s-p);
     color: var(--color-light-100);
@@ -103,7 +91,17 @@ button {
       width: 100%;
       transition: width .3s ease 0s, color .2s ease 0s;
     }
-
-
   }
+}
+
+.content[data-side='top'] {
+  animation-name: slideDownAndFade;
+}
+
+.content[data-side='right'] {
+  animation-name: slideDownAndFade;
+}
+
+.content[data-side='left'] {
+  animation-name: slideDownAndFade;
 }

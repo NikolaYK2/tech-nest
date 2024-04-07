@@ -1,3 +1,8 @@
+/* reset */
+button {
+  all: unset;
+}
+
 @keyframes overlayShow {
   from {
     opacity: 0;

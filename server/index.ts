@@ -4,8 +4,8 @@ dotenv.config();
 
 import express from 'express';
 import sequelize from './db'
-// import models from './models/models'
-const models = require('./models/models')
+import models from './models/models'
+// const models = require('./models/models')
 import cors from 'cors'
 import fileUpload from 'express-fileupload'
 import router from "./routes/index";

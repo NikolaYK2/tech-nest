@@ -1,0 +1,14 @@
+.inputFIle {
+  width: 100%;
+  color: var(--color-light-500);
+}
+.containerInfo {
+  display: flex;
+  align-items: center;
+  >input{
+    margin: 5% 5% 0 0;
+  }
+  >button{
+    margin: 5% 5% 0 0;
+  }
+}
