@@ -9,7 +9,8 @@ import {DropMenu} from "@/common/components/dropMenu/DropMenu.tsx";
 
 export const Admin = () => {
   const {device} = useDevice();
-  const arrCreate = [
+
+  const creationConfig = [
     {
       img: TypeImg,
       component: <Create name={'add type'} fetchCallback={deviceApi.createType}/>,
@@ -24,13 +25,14 @@ export const Admin = () => {
       img: DeviceImg,
       component: <Create name={'Add device'}
                          dropMenu={[
-                           <DropMenu name={'Select type'} options={device.getTypes}/>,
-                           <DropMenu name={'Select brand'} options={device.getBrands}/>
+                           {id: 1, component: <DropMenu name={'Select type'} options={device.getTypes}/>},
+                           {id: 2, component: <DropMenu name={'Select brand'} options={device.getBrands}/>}
                          ]}
+
                          optionsDropMenu={[
                            {placeholder: 'name device', type: 'text'},
-                           {placeholder: 'price device', type: 'text'},
-                           {type: 'file'},
+                           {placeholder: 'price device', type: 'number'},
+                           {placeholder: '', type: 'file'},
                          ]}
                          isInfo={true}
       />,
@@ -42,7 +44,7 @@ export const Admin = () => {
     <section className={`containerApp paddingApp`}>
       ADMIN
       <div className={s.blockCreate}>
-        {arrCreate.map(el =>
+        {creationConfig.map(el =>
           <label key={el.img} className={s.item}>
             <div className={s.img}>
               <img src={el.img} alt=""/>

@@ -1,12 +1,14 @@
 import {ModalContainer} from "@/common/components/modals/modalContainer/ModalContainer.tsx";
 import {useInput} from "@/common/hooks/useInput.ts";
-import {useState} from "react";
+import {ReactElement, useState} from "react";
 import {v1} from "uuid";
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import s from './Create.module.scss'
+import {AxiosResponse} from "axios";
+import {CreateType} from "@/features/shop/api/deviceApi.ts";
 
 type DeviceDataType = {
-  placeholder?: string,
+  placeholder: string,
   type: 'text' | 'file' | 'number',
 }
 type DescriptionDevice = {
@@ -14,14 +16,14 @@ type DescriptionDevice = {
   description: string,
   number: string,
 }
-
-type ValueType = {
-  name: string,
+type DropMenuType = {
+  id: number;
+  component: ReactElement;
 }
 type Props = {
   name: string,
-  fetchCallback?: (value: ValueType) => Promise<any>,
-  dropMenu?: any[],
+  fetchCallback?: (value: CreateType) => Promise<AxiosResponse<any, any>>
+  dropMenu?: DropMenuType[],
   optionsDropMenu?: DeviceDataType[],
   isInfo?: boolean,
 }
@@ -30,15 +32,26 @@ export const Create = ({
                          fetchCallback,
                          dropMenu,
                          isInfo = false,
-                         optionsDropMenu = [<input type='text'/>]
+                         optionsDropMenu = [{placeholder: 'Enter text', type: 'text'}]
                        }: Props) => {
-  const {value, onChange, setValue} = useInput('');
 
-  const [info, setInfo] = useState<DescriptionDevice[]>([])
+  const [info, setInfo] = useState<DescriptionDevice[]>([]);
+
+  const {values, setValues, onChange} = useInput({});
 
   const addType = async () => {
-    fetchCallback && await fetchCallback({name: value})
-      .then(_ => setValue(''))
+
+    try {
+
+      if (fetchCallback) {
+        await fetchCallback(values)
+          .then(_ => setValues({}))
+      }
+
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
   const addInfoHandle = () => {
@@ -51,10 +64,10 @@ export const Create = ({
   return (
     <ModalContainer name={name} callback={addType}>
 
-      {dropMenu?.map(dropMenu => dropMenu)}
+      {dropMenu?.map(dropMenu => <div key={dropMenu.id}>{dropMenu.component}</div>)}
 
-      {optionsDropMenu?.map(input =>
-        <fieldset>
+      {optionsDropMenu?.map((input) =>
+        <div key={input.placeholder}>
           <label htmlFor='type'>
             Type
           </label>
@@ -62,20 +75,23 @@ export const Create = ({
             ? <input type="file" className={s.inputFIle}/>
             : <input className={'inputApp'}
                      type={input.type}
+                     name={input.placeholder}
                      placeholder={input.placeholder}
-                     value={value}
+                     value={values[input.placeholder] || ''}
                      onChange={onChange}/>
           }
-        </fieldset>
+        </div>
       )}
 
       {isInfo &&
           <>
               <button className={'btnApp'} onClick={addInfoHandle}>add info</button>
-            {info?.map(el =>
+            {info?.map((el) =>
               <div key={el.number} className={s.containerInfo}>
-                <input className={'inputApp'} type={'text'} placeholder={'name'} value={value} onChange={onChange}/>
-                <input className={'inputApp'} type={'text'} placeholder={'describe'} value={value} onChange={onChange}/>
+                <input className={'inputApp'} type={'text'} placeholder={'name'}
+                       name={`name${el.number}`} value={values[el.number]} onChange={onChange}/>
+                <input className={'inputApp'} type={'text'} placeholder={'describe'}
+                       name={`describe${el.number}`} value={values[el.number]} onChange={onChange}/>
                 <PolyElement variant={'error'} onClick={() => deleteInfoHandle(el.number)}>delete</PolyElement>
               </div>
             )}
