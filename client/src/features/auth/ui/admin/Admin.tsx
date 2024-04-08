@@ -6,8 +6,10 @@ import {deviceApi} from "@/features/shop/api/deviceApi.ts";
 import s from './Admin.module.scss'
 import {useDevice} from "@/features/shop/lib/useDevice.ts";
 import {DropMenu} from "@/common/components/dropMenu/DropMenu.tsx";
+import {observer} from "mobx-react-lite";
+import {useEffect} from "react";
 
-export const Admin = () => {
+export const Admin = observer(() => {
   const {device} = useDevice();
 
   const creationConfig = [
@@ -25,20 +27,39 @@ export const Admin = () => {
       img: DeviceImg,
       component: <Create headerText={'Add device'}
                          dropMenu={[
-                           {id: 1, component: <DropMenu name={'Select type'} options={device.getTypes}/>},
-                           {id: 2, component: <DropMenu name={'Select brand'} options={device.getBrands}/>}
+                           {
+                             id: 1,
+                             component: <DropMenu name={device.getSelectedType?.name || 'Select type'}
+                                                  options={device.getTypes}
+                                                  setSelected={device.setSelectedType}
+                             />
+                           },
+                           {
+                             id: 2,
+                             component: <DropMenu name={device.getSelectedBrand?.name || 'Select brand'}
+                                                  options={device.getBrands}
+                                                  setSelected={device.setSelectedBrand}
+                             />
+                           }
                          ]}
 
                          optionsDropMenu={[
                            {name: 'name', placeholder: 'name device', type: 'text'},
                            {name: 'price', placeholder: 'price device', type: 'number'},
-                           {name: '', placeholder: '', type: 'file'},
+                           {name: 'file', placeholder: '', type: 'file'},
                          ]}
                          isInfo={true}
       />,
       description: 'Add a new device with detailed specifications'
     },
   ]
+
+  useEffect(() => {
+    deviceApi.fetchBrands()
+      .then(res => device.setBrands(res));
+    deviceApi.fetchTypes()
+      .then(res => device.setTypes(res));
+  }, []);
 
   return (
     <section className={`containerApp paddingApp`}>
@@ -58,4 +79,4 @@ export const Admin = () => {
       </div>
     </section>
   );
-};
+});

@@ -5,15 +5,15 @@ export type Type = {
   id: number,
   name: string,
 }
-export type DeviceType = Type &{
+export type DeviceType = Type & {
   brandId: number,
   createdAt: string,
   img: string,
   info: []
   price: number,
   rating: number,
-  typeId:number,
-  updatedAt:string,
+  typeId: number,
+  updatedAt: string,
 }
 export type SelectedType = Partial<Omit<Type, 'name'>>
 
@@ -21,8 +21,8 @@ export class DeviceStore {
   private types: Type[];
   private brands: Type[];
   private device: DeviceType[];
-  private selectedType: SelectedType;
-  private selectedBrand: SelectedType;
+  private selectedType: Type | null;
+  private selectedBrand: Type | null;
   private selectedDescribe: SelectedType;
 
   constructor() {
@@ -68,8 +68,8 @@ export class DeviceStore {
       //   img: 'https://content2.onliner.by/catalog/device/header/a5e2764b76188d4ffe32fefeb0a6b9be.jpeg'
       // },
     ]
-    this.selectedType = {}
-    this.selectedBrand = {}
+    this.selectedType = {} as Type
+    this.selectedBrand = {} as Type
     this.selectedDescribe = {id: 1}
 
     makeAutoObservable(this)
@@ -87,11 +87,11 @@ export class DeviceStore {
     this.device = device
   }
 
-  setSelectedType = (type: SelectedType) => {
+  setSelectedType = (type: Type) => {
     this.selectedType = type
   }
 
-  setSelectedBrand = (type: SelectedType) => {
+  setSelectedBrand = (type: Type) => {
     this.selectedBrand = type
   }
   setSelectedDescribe = (type: SelectedType) => {

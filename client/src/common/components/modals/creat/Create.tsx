@@ -44,10 +44,10 @@ export const Create = ({
     console.log(values)
     try {
 
-      if (fetchCallback) {
-        await fetchCallback(values)
-          .then(_ => setValues({}))
-      }
+      // if (fetchCallback) {
+      //   await fetchCallback(values)
+      //     .then(_ => setValues({}))
+      // }
 
     } catch (e) {
       console.log(e)
