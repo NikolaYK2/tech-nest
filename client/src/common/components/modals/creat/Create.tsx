@@ -8,6 +8,7 @@ import {AxiosResponse} from "axios";
 import {CreateType} from "@/features/shop/api/deviceApi.ts";
 
 type DeviceDataType = {
+  name: string,
   placeholder: string,
   type: 'text' | 'file' | 'number',
 }
@@ -21,18 +22,18 @@ type DropMenuType = {
   component: ReactElement;
 }
 type Props = {
-  name: string,
+  headerText: string,
   fetchCallback?: (value: CreateType) => Promise<AxiosResponse<any, any>>
   dropMenu?: DropMenuType[],
   optionsDropMenu?: DeviceDataType[],
   isInfo?: boolean,
 }
 export const Create = ({
-                         name,
+                         headerText,
                          fetchCallback,
                          dropMenu,
                          isInfo = false,
-                         optionsDropMenu = [{placeholder: 'Enter text', type: 'text'}]
+                         optionsDropMenu = [{name: 'name', placeholder: 'Enter text', type: 'text'}]
                        }: Props) => {
 
   const [info, setInfo] = useState<DescriptionDevice[]>([]);
@@ -40,7 +41,7 @@ export const Create = ({
   const {values, setValues, onChange} = useInput({});
 
   const addType = async () => {
-
+    console.log(values)
     try {
 
       if (fetchCallback) {
@@ -62,7 +63,7 @@ export const Create = ({
   }
 
   return (
-    <ModalContainer name={name} callback={addType}>
+    <ModalContainer name={headerText} callback={addType}>
 
       {dropMenu?.map(dropMenu => <div key={dropMenu.id}>{dropMenu.component}</div>)}
 
@@ -75,9 +76,9 @@ export const Create = ({
             ? <input type="file" className={s.inputFIle}/>
             : <input className={'inputApp'}
                      type={input.type}
-                     name={input.placeholder}
+                     name={input.name}
                      placeholder={input.placeholder}
-                     value={values[input.placeholder] || ''}
+                     value={values[input.name] || ''}
                      onChange={onChange}/>
           }
         </div>

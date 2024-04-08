@@ -13,26 +13,26 @@ export const Admin = () => {
   const creationConfig = [
     {
       img: TypeImg,
-      component: <Create name={'add type'} fetchCallback={deviceApi.createType}/>,
+      component: <Create headerText={'add type'} fetchCallback={deviceApi.createType}/>,
       description: 'Add a new device type for better categorization'
     },
     {
       img: BrandImg,
-      component: <Create name={'Add brande'} fetchCallback={deviceApi.createBrand}/>,
+      component: <Create headerText={'Add brande'} fetchCallback={deviceApi.createBrand}/>,
       description: 'Add a new brand for specific manufacturer searches'
     },
     {
       img: DeviceImg,
-      component: <Create name={'Add device'}
+      component: <Create headerText={'Add device'}
                          dropMenu={[
                            {id: 1, component: <DropMenu name={'Select type'} options={device.getTypes}/>},
                            {id: 2, component: <DropMenu name={'Select brand'} options={device.getBrands}/>}
                          ]}
 
                          optionsDropMenu={[
-                           {placeholder: 'name device', type: 'text'},
-                           {placeholder: 'price device', type: 'number'},
-                           {placeholder: '', type: 'file'},
+                           {name: 'name', placeholder: 'name device', type: 'text'},
+                           {name: 'price', placeholder: 'price device', type: 'number'},
+                           {name: '', placeholder: '', type: 'file'},
                          ]}
                          isInfo={true}
       />,
