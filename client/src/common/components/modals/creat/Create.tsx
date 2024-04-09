@@ -14,7 +14,7 @@ type DeviceDataType = {
   placeholder: string,
   type: 'text' | 'file' | 'number',
 }
-type DescriptionDevice = {
+type InfoType = {
   title: string,
   description: string,
   number: string,
@@ -39,12 +39,11 @@ export const Create = observer(({
                                 }: Props) => {
 
   const {device} = useDevice();
-  const [info, setInfo] = useState<DescriptionDevice[]>([]);
+  const [info, setInfo] = useState<InfoType[]>([]);
 
   const {values, setValues, onChange, selectFile} = useInput({});
-  console.log(values)
   const addType = async () => {
-    console.log(values)
+
     try {
 
       // if (fetchCallback) {
@@ -65,7 +64,7 @@ export const Create = observer(({
     setInfo(info.filter(info => info.number !== number))
   }
 
-  const changeInfo = (key: string, value: any, number: string) => {
+  const changeInfo = (key: string, value: string, number: string) => {
     setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
   }
 
@@ -105,10 +104,20 @@ export const Create = observer(({
               <button className={'btnApp'} onClick={addInfoHandle}>add info</button>
             {info?.map((el) =>
               <div key={el.number} className={s.containerInfo}>
-                <input className={'inputApp'} type={'text'} placeholder={'name'}
-                       name={`name${el.number}`} value={values[el.number]} onChange={onChange}/>
-                <input className={'inputApp'} type={'text'} placeholder={'describe'}
-                       name={`describe${el.number}`} value={values[el.number]} onChange={onChange}/>
+                <input className={'inputApp'}
+                       type={'text'}
+                       placeholder={'name'}
+                       name={el.title}
+                       value={el.title}
+                       onChange={(e) => changeInfo('title', e.currentTarget.value, el.number)}/>
+
+                <input className={'inputApp'}
+                       type={'text'}
+                       placeholder={'describe'}
+                       name={el.description}
+                       value={el.description}
+                       onChange={(e) => changeInfo('description', e.currentTarget.value, el.number)}/>
+
                 <PolyElement variant={'error'} onClick={() => deleteInfoHandle(el.number)}>delete</PolyElement>
               </div>
             )}
