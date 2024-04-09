@@ -1,11 +1,13 @@
 import {ModalContainer} from "@/common/components/modals/modalContainer/ModalContainer.tsx";
 import {useInput} from "@/common/hooks/useInput.ts";
-import {ReactElement, useState} from "react";
+import {ReactElement, useEffect, useState} from "react";
 import {v1} from "uuid";
 import {PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import s from './Create.module.scss'
 import {AxiosResponse} from "axios";
-import {CreateType} from "@/features/shop/api/deviceApi.ts";
+import {CreateType, deviceApi} from "@/features/shop/api/deviceApi.ts";
+import {useDevice} from "@/features/shop/lib/useDevice.ts";
+import {observer} from "mobx-react-lite";
 
 type DeviceDataType = {
   name: string,
@@ -28,18 +30,19 @@ type Props = {
   optionsDropMenu?: DeviceDataType[],
   isInfo?: boolean,
 }
-export const Create = ({
-                         headerText,
-                         fetchCallback,
-                         dropMenu,
-                         isInfo = false,
-                         optionsDropMenu = [{name: 'name', placeholder: 'Enter text', type: 'text'}]
-                       }: Props) => {
+export const Create = observer(({
+                                  headerText,
+                                  fetchCallback,
+                                  dropMenu,
+                                  isInfo = false,
+                                  optionsDropMenu = [{name: 'name', placeholder: 'Enter text', type: 'text'}]
+                                }: Props) => {
 
+  const {device} = useDevice();
   const [info, setInfo] = useState<DescriptionDevice[]>([]);
 
-  const {values, setValues, onChange} = useInput({});
-
+  const {values, setValues, onChange, selectFile} = useInput({});
+  console.log(values)
   const addType = async () => {
     console.log(values)
     try {
@@ -62,6 +65,19 @@ export const Create = ({
     setInfo(info.filter(info => info.number !== number))
   }
 
+  const changeInfo = (key: string, value: any, number: string) => {
+    setInfo(info.map(i => i.number === number ? {...i, [key]: value} : i))
+  }
+
+
+  useEffect(() => {
+    deviceApi.fetchBrands()
+      .then(res => device.setBrands(res));
+    deviceApi.fetchTypes()
+      .then(res => device.setTypes(res));
+  }, []);
+
+
   return (
     <ModalContainer name={headerText} callback={addType}>
 
@@ -73,7 +89,7 @@ export const Create = ({
             Type
           </label>
           {input.type === 'file'
-            ? <input type="file" className={s.inputFIle}/>
+            ? <input type="file" className={s.inputFIle} onChange={selectFile}/>
             : <input className={'inputApp'}
                      type={input.type}
                      name={input.name}
@@ -101,4 +117,6 @@ export const Create = ({
 
     </ModalContainer>
   );
-};
+});
+
+

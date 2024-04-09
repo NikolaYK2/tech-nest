@@ -7,7 +7,6 @@ import s from './Admin.module.scss'
 import {useDevice} from "@/features/shop/lib/useDevice.ts";
 import {DropMenu} from "@/common/components/dropMenu/DropMenu.tsx";
 import {observer} from "mobx-react-lite";
-import {useEffect} from "react";
 
 export const Admin = observer(() => {
   const {device} = useDevice();
@@ -53,13 +52,6 @@ export const Admin = observer(() => {
       description: 'Add a new device with detailed specifications'
     },
   ]
-
-  useEffect(() => {
-    deviceApi.fetchBrands()
-      .then(res => device.setBrands(res));
-    deviceApi.fetchTypes()
-      .then(res => device.setTypes(res));
-  }, []);
 
   return (
     <section className={`containerApp paddingApp`}>

@@ -3,7 +3,7 @@ import s from './DropMenu.module.scss'
 import {Type} from "@/features/shop/model/DeviceStore.ts";
 
 type Props = {
-  name: any,
+  name: string,
   options: Type[],
   setSelected: (type: Type)=>void,
 }
