@@ -14,7 +14,7 @@ export const Admin = observer(() => {
   const creationConfig = [
     {
       img: TypeImg,
-      component: <Create headerText={'add type'} fetchCallback={deviceApi.createType}/>,
+      component: <Create headerText={'Add type'} fetchCallback={deviceApi.createType}/>,
       description: 'Add a new device type for better categorization'
     },
     {
@@ -48,6 +48,7 @@ export const Admin = observer(() => {
                            {name: 'file', placeholder: '', type: 'file'},
                          ]}
                          isInfo={true}
+                         fetchCallback={deviceApi.createDevice}
       />,
       description: 'Add a new device with detailed specifications'
     },

@@ -36,7 +36,7 @@ export const deviceApi = {
     return res.data;
   },
 
-  async createDevice(device: any) {
+  async createDevice(device: FormData) {
     const res = await $authHost.post('device/', device);
     return res;
   },

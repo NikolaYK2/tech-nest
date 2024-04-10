@@ -1,6 +1,10 @@
 import {makeAutoObservable} from "mobx";
 
-
+export type InfoType = Pick<DeviceType, 'createdAt' | 'id' | 'updatedAt'> & {
+  description: string,
+  deviceId: number,
+  title: string,
+}
 export type Type = {
   id: number,
   name: string,
@@ -9,7 +13,7 @@ export type DeviceType = Type & {
   brandId: number,
   createdAt: string,
   img: string,
-  info: []
+  info: InfoType[],
   price: number,
   rating: number,
   typeId: number,

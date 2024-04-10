@@ -23,9 +23,13 @@ type DropMenuType = {
   id: number;
   component: ReactElement;
 }
+
+type fetchForm = (value: FormData) => Promise<AxiosResponse<any, any>>;
+type fetchType = (value: CreateType) => Promise<AxiosResponse<any, any>>;
+
 type Props = {
-  headerText: string,
-  fetchCallback?: (value: CreateType) => Promise<AxiosResponse<any, any>>
+  headerText: 'Add type' | 'Add device' | 'Add brande',
+  fetchCallback: fetchForm | fetchType,
   dropMenu?: DropMenuType[],
   optionsDropMenu?: DeviceDataType[],
   isInfo?: boolean,
@@ -40,16 +44,29 @@ export const Create = observer(({
 
   const {device} = useDevice();
   const [info, setInfo] = useState<InfoType[]>([]);
+  console.log(info)
+  const {values, setValues, onChange, selectFile, file} = useInput({});
 
-  const {values, setValues, onChange, selectFile} = useInput({});
-  const addType = async () => {
+  const addDevice = async () => {
 
     try {
+      if (headerText === 'Add device') {
+        const formData = new FormData();
+        formData.append('name', values.name);
+        formData.append('price', `${values.price}`);
+        if (file) formData.append('img', file);
+        formData.append('brandId', String(device.getSelectedBrand?.id));
+        formData.append('typeId', String(device.getSelectedType?.id));
+        formData.append('info', JSON.stringify(info));
 
-      // if (fetchCallback) {
-      //   await fetchCallback(values)
-      //     .then(_ => setValues({}))
-      // }
+        await (fetchCallback as fetchForm)(formData);
+      } else {
+        if (fetchCallback) {
+          const res = await (fetchCallback as fetchType)(values)
+          if (res) setValues({})
+        }
+
+      }
 
     } catch (e) {
       console.log(e)
@@ -78,7 +95,7 @@ export const Create = observer(({
 
 
   return (
-    <ModalContainer name={headerText} callback={addType}>
+    <ModalContainer name={headerText} callback={addDevice}>
 
       {dropMenu?.map(dropMenu => <div key={dropMenu.id}>{dropMenu.component}</div>)}
 

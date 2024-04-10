@@ -1,10 +1,11 @@
 import {ChangeEvent, useState} from "react";
+import {CreateType} from "@/features/shop/api/deviceApi.ts";
 
 export type InputType = {
   [key: string]: string,
 }
-export const useInput = (initValue: InputType) => {
-  const [values, setValues] = useState<InputType>(initValue);
+export const useInput = (initValue: CreateType) => {
+  const [values, setValues] = useState<CreateType>(initValue);
   const [file, setFile] = useState<File | null>(null);
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {

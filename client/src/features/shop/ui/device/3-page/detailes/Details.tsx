@@ -2,22 +2,22 @@ import s from './Details.module.scss'
 import {NavBar} from "@/common/components/navBar/NavBar.tsx";
 import {useDevice} from "@/features/shop/lib/useDevice.ts";
 import {observer} from "mobx-react-lite";
+import {InfoType} from "@/features/shop/model/DeviceStore.ts";
 
-export const Details = observer(() => {
+type Props = {
+  info: InfoType[]
+}
+export const Details = observer(({info}: Props) => {
   const {device} = useDevice()
+
   const productDetails = [
     {id: 1, name: 'Specification'},
     {id: 2, name: 'Description'}
   ]
 
-  const Specification = [
-    {id: 1, title: 'Operative memory', description: '5 gb'},
-    {id: 2, title: 'Camera', description: '12 mp'},
-    {id: 3, title: 'Processor', description: 'pentium 3'},
-    {id: 4, title: 'numbers nucleus', description: '2'},
-    {id: 5, title: 'accumulator', description: '4000'},
-  ]
   const description = {img: '', description: 'lalalalalalalalla'}
+
+
   return (
     <section className={s.productDetails}>
 
@@ -33,7 +33,7 @@ export const Details = observer(() => {
 
         {<table className={s.table}>
           <tbody>
-          {device.getSelectedDescribe.id === 1 && Specification.map(info =>
+          {device.getSelectedDescribe.id === 1 && info.map(info =>
             <tr key={info.id}>
               <td className={s.td}>{info.title}</td>
               <td className={s.td}>{info.description}</td>

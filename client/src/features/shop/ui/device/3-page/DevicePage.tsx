@@ -7,10 +7,13 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import {deviceApi} from "@/features/shop/api/deviceApi.ts";
 import {DeviceType} from "@/features/shop/model/DeviceStore.ts";
+import {useDevice} from "@/features/shop/lib/useDevice.ts";
 
 export const DevicePage = observer(() => {
-
   const [device, setDevice] = useState<DeviceType | null>(null);
+  const {device:dev} = useDevice();
+  const brand = dev.getBrands.find(el => el.id === device?.brandId)
+
   const {id} = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -33,7 +36,7 @@ export const DevicePage = observer(() => {
         <div className={s.item}>
           <div className={s.nameBrand}>
             <h2>{device?.name}</h2>
-            <p>Apple</p>
+            <p>{brand ? brand.name : 'not brand'}</p>
           </div>
           <div className={s.describe}></div>
           <div className={s.price}>${device?.price}</div>
@@ -42,7 +45,7 @@ export const DevicePage = observer(() => {
           </div>
         </div>
       </section>
-      <Details/>
+      <Details info={device.info}/>
     </section>
   );
 });
