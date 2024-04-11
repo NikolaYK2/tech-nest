@@ -1,16 +1,16 @@
 import s from './NavBar.module.scss'
 import {ButtonProps, PolyElement} from "@/common/components/polyElement/PolyElement.tsx";
 import {observer} from "mobx-react-lite";
-import {SelectedType} from "@/features/shop/model/DeviceStore.ts";
-import {useLocation, useNavigate} from "react-router-dom";
+import {SelectedType, Type} from "@/features/shop/model/DeviceStore.ts";
+import {useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE, AUTHORIZATION_ROUTE} from "@/common/utils/constRout.ts";
 import {useAuth} from "@/features/auth/lib/useAuth.ts";
 
 
 type Props = Omit<ButtonProps, 'as'> & {
-  navigation: { id?: number; name: string; }[],
-  selected?: SelectedType,
-  setSelected?: (data: SelectedType) => void,
+  navigation: Type[],
+  selected?: Type | SelectedType,
+  setSelected?: (data: Type) => void,
 }
 /**
  * @param {object} Props
@@ -30,9 +30,8 @@ export const NavBar = observer(({
                                   setSelected,
                                 }: Props) => {
 
-  const {user} = useAuth()
+  const {user} = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const admin = 'Admin panel'.toLowerCase();
   const signIn = 'Logout'.toLowerCase();
@@ -49,8 +48,8 @@ export const NavBar = observer(({
     [auth]: () => navigate(AUTHORIZATION_ROUTE),
   }
 
-  const setSelectHandle = (el: SelectedType) => {
-    setSelected && setSelected(el)
+  const setSelectHandle = (el: Type) => {
+    if (setSelected) setSelected(el)
   }
 
   const navigateClickHandle = (name: string) => {

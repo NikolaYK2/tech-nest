@@ -1,0 +1,36 @@
+.containerPages {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-light-900);
+
+  .paginatorBut, .page, .pageActive {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 6px 10px;
+    color: var(--color-light-100);
+    background: transparent;
+    cursor: pointer;
+
+    transition: background .2s ease 0s, color .2s ease 0s;
+  }
+
+  .paginatorBut {
+    > button:first-child {
+      margin: 0 5px 0;
+    }
+  }
+
+  .page, .pageActive {
+    border: 1px solid var(--color-light-500);
+  }
+
+  .pageActive, .page:hover, .page:focus {
+    border: 1px solid transparent;
+    background: var(--color-medium-900);
+    color: var(--color-dark-100);
+  }
+}

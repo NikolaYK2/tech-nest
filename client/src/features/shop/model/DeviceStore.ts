@@ -6,7 +6,7 @@ export type InfoType = Pick<DeviceType, 'createdAt' | 'id' | 'updatedAt'> & {
   title: string,
 }
 export type Type = {
-  id: number,
+  id?: number,
   name: string,
 }
 export type DeviceType = Type & {
@@ -25,8 +25,8 @@ export class DeviceStore {
   private types: Type[];
   private brands: Type[];
   private device: DeviceType[];
-  private selectedType: Type | null;
-  private selectedBrand: Type | null;
+  private selectedType: Type;
+  private selectedBrand: Type;
   private selectedDescribe: SelectedType;
   private page: number;
   private totalCount: number;
@@ -98,6 +98,7 @@ export class DeviceStore {
   }
 
   setSelectedType = (type: Type) => {
+    this.setPage(1)
     this.selectedType = type
   }
 

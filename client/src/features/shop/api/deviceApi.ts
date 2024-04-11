@@ -37,12 +37,15 @@ export const deviceApi = {
   },
 
   async createDevice(device: FormData) {
-    const res = await $authHost.post('device/', device);
-    return res;
+    return await $authHost.post('device/', device);
   },
 
-  async fetchDevices() {
-    const res = await $host.get<DeviceTypePage>('device/');
+  async fetchDevices(typeId: number | null, brandId: number | null, page: number | null, limit: number | null = 5) {
+    const res = await $host.get<DeviceTypePage>('device/', {
+      params: {
+        typeId, brandId, page, limit
+      }
+    });
     return res.data;
   },
 
