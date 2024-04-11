@@ -44,7 +44,6 @@ export const Create = observer(({
 
   const {device} = useDevice();
   const [info, setInfo] = useState<InfoType[]>([]);
-  console.log(info)
   const {values, setValues, onChange, selectFile, file} = useInput({});
 
   const addDevice = async () => {

@@ -28,6 +28,9 @@ export class DeviceStore {
   private selectedType: Type | null;
   private selectedBrand: Type | null;
   private selectedDescribe: SelectedType;
+  private page: number;
+  private totalCount: number;
+  private limit: number;
 
   constructor() {
     this.types = [
@@ -75,6 +78,9 @@ export class DeviceStore {
     this.selectedType = {} as Type
     this.selectedBrand = {} as Type
     this.selectedDescribe = {id: 1}
+    this.page = 1
+    this.totalCount = 0
+    this.limit = 3
 
     makeAutoObservable(this)
   }
@@ -101,6 +107,15 @@ export class DeviceStore {
   setSelectedDescribe = (type: SelectedType) => {
     this.selectedDescribe = type
   }
+  setPage = (num: number) => {
+    this.page = num;
+  }
+  setTotalCount = (num: number) => {
+    this.totalCount = num;
+  }
+  setLimit = (num: number) => {
+    this.limit = num;
+  }
 
   get getTypes() {
     return this.types
@@ -124,5 +139,17 @@ export class DeviceStore {
 
   get getSelectedDescribe() {
     return this.selectedDescribe
+  }
+
+  get getPage() {
+    return this.page
+  }
+
+  get getTotalCount() {
+    return this.totalCount
+  }
+
+  get getLimit() {
+    return this.limit
   }
 }
